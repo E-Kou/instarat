@@ -1,0 +1,67 @@
+#WelcomePage{
+    max-width: min(100%, 600px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    margin: auto;
+    padding: 20px;
+}
+body:has(#WelcomePage){
+    justify-content: center;
+}
+#WelcomePage .page .bottomNav .mainButton{
+    width: 100%;
+    display: block;
+}
+#WelcomePage .page .buttomArea{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+#WelcomePage .page .buttomArea .mainButton:not(.backButton){
+    flex:1;
+}
+#WelcomePage .page .buttomArea .backButton{
+    padding: 2px 7px;
+}
+
+#WelcomePage .page .welcomeText{
+margin: 10px 0;
+}
+
+
+.radioList{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 100px), 1fr));
+    border: 2px solid rgb(54, 54, 54);
+    position: relative;
+    isolation: isolate;
+    border-radius: 7px;
+}
+.radioList .radioPointer{
+    position: absolute;
+    inset: 0;
+    background: rgb(0, 149, 246);
+    pointer-events: none;
+    overflow: hidden;
+    transition: clip-path 0.25s ease;
+}
+.radioList input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    pointer-events: none;
+}
+.radioList label {
+    padding: 8px;
+    margin: 2px;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    background-color: #000;
+    border-radius: 3px;
+}

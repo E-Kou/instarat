@@ -1,14 +1,14 @@
 :root{
   --quickTransition:200ms;
   --longTransition:500ms;
-  --spotlight-color:#1f65af;
+  --spotlight-color:rgb(0, 149, 246);
   --light-color:#b1c1d3;
   --longTansition:350ms;
   --poupup-bg: radial-gradient(#f3f3f3,#f6f6f6);
   --border-edge: 1.5px solid #0000001f;
   --popup-BR: 15px;
   --small-BR: 8px;
-  --button-BR:100vmax;
+  --button-BR:8px;
   --simple-shadow: 0px 4px 13px #0000002b;
   --attention-icon: red;
   --side-txt: #393939;
@@ -47,6 +47,9 @@ body{
     flex-direction: column;
     justify-content: space-between;
     overscroll-behavior-x: none;
+}
+#root{
+min-height: 100%;
 }
 main{
   flex: 1;

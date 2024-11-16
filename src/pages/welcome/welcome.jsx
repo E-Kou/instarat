@@ -2,14 +2,11 @@ import { IconChevronLeft, IconLogin2 } from '@tabler/icons-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, replace, useSearchParams } from 'react-router-dom';
 import Slider from 'react-slick';
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import AutoHeight from '../../utils/autoHeight';
+import "./welcome.css";
 
-function ListItem({name, text}){
-return             <div> 
-<input type="radio" id="elementarySchool" name={name} value={name}/>
-<label htmlFor={name}>{text}</label>
-</div>
-}
 
 
 export default function Welcome() {
@@ -49,8 +46,36 @@ if(localStorage.getItem("loadedApp") !== "Loaded"){
       autoplay:false,
       adaptiveHeight: true,
       arrows:false,
-      swipeToSlide: false,
     };
+
+    const [activeTab, setActiveTab] = useState();
+    const containerRef = useRef(null);
+    const activeTabElementRef = useRef(null);
+  
+    useEffect(() => {
+      const container = containerRef.current;
+  
+      if (activeTab && container) {
+        const activeTabElement = activeTabElementRef.current;
+  
+        if (activeTabElement) {
+          const { offsetLeft, offsetWidth, offsetHeight, offsetTop } = activeTabElement;
+          const clipTop = offsetTop;
+          const clipBottom = offsetHeight + offsetTop;
+          const clipLeft = offsetLeft;
+          const clipRight = offsetLeft + offsetWidth;
+          container.style.clipPath = `inset(${Number((clipTop / container.offsetHeight) * 100).toFixed()}% ${Number(100 - (clipRight / container.offsetWidth) * 100).toFixed()}% ${Number(100 - (clipBottom / container.offsetHeight) * 100).toFixed()}% ${Number((clipLeft / container.offsetWidth) * 100).toFixed()}% round 5px)`;
+        }
+      }
+    }, [activeTab, activeTabElementRef, containerRef]);
+  
+
+    function ListItem({name, text, category}){
+      return             <div ref={activeTab === name ? activeTabElementRef : null}   onClick={() => {setActiveTab(name)}}> 
+      <input type="radio" id={name} name={category} value={name}/>
+      <label htmlFor={name}>{text}</label>
+      </div>
+      }
 
   return (
     <div id='WelcomePage'>
@@ -66,12 +91,12 @@ if(localStorage.getItem("loadedApp") !== "Loaded"){
         <img src='logo'/>
         <p className='logoDesign'>Λογότυπος από τον Μιχάλη ...</p>
         <h1>Καλωσορίσατε στο InstaRat</h1>
-        <p>Το παρόν web-app κατασκευάστηκε από τον μαθητή <Link to='/user/koutsogiann1s'><b>Ευάγγελο Κουτσογιάννη</b></Link>
-        για την ενημέρωση των νέων περί των κινδύνων των κοινωνικών δικτύων.
+      <div className='welcomeText'> <p>Το παρόν web-app κατασκευάστηκε από τον μαθητή <Link to='/user/koutsogiann1s'><b>Ευάγγελο Κουτσογιάννη</b></Link> για την ενημέρωση των νέων περί των κινδύνων των κοινωνικών δικτύων.
         </p>
         <Link to='about'>Μαθετε περισσότερα</Link>
+        </div> 
         <div className='bottomNav'>
-            <button onClick={firstStep}>Enter</button>
+            <button className='mainButton' onClick={firstStep}>Συνέχεια</button>
             </div>
             </div>
             
@@ -88,16 +113,17 @@ if(localStorage.getItem("loadedApp") !== "Loaded"){
                 </div>
                 <div className='selectArea'>
                 <p>Είμαι μαθητής:</p>
-                <div className='radioList'> 
-                    <ListItem name='elementarySchool' text='Δημοτικού'/>
-<ListItem name='middleSchool' text='Γυμνασίου'/>
-<ListItem name='highSchool' text='Λυκείου'/>
-<ListItem name='completedSchool' text='Τελειόφοιτος'/>
+                <div className='radioList'>
+                  <div className='radioPointer' ref={containerRef}/>
+                    <ListItem category='school' name='elementarySchool' text='Δημοτικού'/>
+<ListItem category='school' name='middleSchool' text='Γυμνασίου'/>
+<ListItem category='school' name='highSchool' text='Λυκείου'/>
+<ListItem category='school' name='completedSchool' text='Τελειόφοιτος'/>
 </div>
                 </div>
                 <div className='buttomArea'>
-                <button type='button' className="button" onClick={previous}><IconChevronLeft /></button>
-          <button type='submit'>Έλεγχος Στοιχείων</button>
+                <button type='button' className="backButton mainButton" onClick={previous}><IconChevronLeft /></button>
+          <button className='mainButton' type='submit'>Έλεγχος Στοιχείων</button>
                 </div>
                 
                 </form>
