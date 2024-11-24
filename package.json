@@ -13,11 +13,14 @@
     "@tabler/icons": "^3.21.0",
     "@tabler/icons-react": "^3.22.0",
     "firebase": "^11.0.2",
+    "js-levenshtein": "^1.1.6",
+    "motion": "^11.11.17",
     "react": "^18.3.1",
     "react-animate-height": "^3.2.3",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "react-slick": "^0.30.2",
+    "react-use-measure": "^2.1.1",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

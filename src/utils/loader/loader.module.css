@@ -1,0 +1,17 @@
+.loaderSVG{
+    animation-duration: .8s;
+    animation-timing-function: steps(12, end);
+    animation-iteration-count: infinite;
+    animation-name: spinner;
+}
+/* .loaderLines{
+} */
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

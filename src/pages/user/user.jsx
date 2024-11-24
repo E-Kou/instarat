@@ -12,7 +12,7 @@ export default function Userpage() {
         </div>
     {localStorage.getItem("loadedApp") !== "Loaded"?<WelocomeToHere>Ορίστε στοίχεια χρήστη για να δείτε περισσότερα</WelocomeToHere>
     :
-    <div>Psots</div>
+    <div>Posts</div>
     }
     </div>
   )

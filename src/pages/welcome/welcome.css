@@ -5,36 +5,128 @@
     align-items: center;
     min-height: 100%;
     margin: auto;
-    padding: 20px;
 }
 body:has(#WelcomePage){
     justify-content: center;
+}
+#WelcomePage .page{
+    padding: 20px;
+}
+#WelcomePage .page > svg{
+    height: 5rem;
+    width: 5rem;
+}
+#WelcomePage .slick-slider{
+    width: 100%;
+}
+#WelcomePage .slick-slider .slick-list{
+transition: height var(--longTransition);
 }
 #WelcomePage .page .bottomNav .mainButton{
     width: 100%;
     display: block;
 }
+
+#WelcomePage .actionSlide .rippleLoader .inner {
+  animation-name: grow;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  stroke: var(--spotlight-color);
+}
+
+#WelcomePage .actionSlide .rippleLoader .outer {
+  animation-name: grow;
+  animation-duration: 2s;
+  animation-delay: -1s;
+  animation-timing-function: linear;
+  stroke: var(--spotlight-color);
+  animation-iteration-count: infinite;
+}
+
+@keyframes grow {
+    0% {
+      r: 0;
+      opacity: 1;
+    }
+  
+    100% {
+      r: 48.5;
+      opacity: 0;
+    }
+  }
+
+#WelcomePage .actionSlide > div {
+overflow: hidden;
+}
+#WelcomePage .actionSlide .scroll{
+width: clamp(80px, 20vw, 100px);
+}
+#WelcomePage .actionSlide .scroll svg{
+    height: 4rem;
+    width: 4rem;
+    background-color: var(--spotlight-color);
+    border-radius: 100vmax;
+    color: white;
+    padding: 0.3rem;
+    aspect-ratio: 1/1;
+}
+#WelcomePage .actionSlide .error svg{
+    height: 4rem;
+    width: 4rem;
+    background-color: rgb(182 0 0);
+    color: white;
+    stroke-width: 2.5px;
+    border-radius: 100vmax;
+    padding: 0.6rem;
+    aspect-ratio: 1 / 1;
+}
+#WelcomePage .actionSlide > div{
+    margin: auto;
+display: grid;
+align-items: center;
+    }
+    #WelcomePage .actionSlide > div >div:not(.scroll){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+        justify-content: center;
+    }
+    #WelcomePage .actionSlide > div p{
+        font-size: 1.1rem;
+        color: #fff;
+        font-weight: 600;
+    }
+
 #WelcomePage .page .buttomArea{
     display: flex;
     flex-wrap: nowrap;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 #WelcomePage .page .buttomArea .mainButton:not(.backButton){
     flex:1;
+    position: relative;
 }
+#WelcomePage .page .buttomArea .mainButton svg.loadSpinner{
+    position: absolute;
+    height: 100%;
+    margin: auto;
+    padding: 5px;
+    }
 #WelcomePage .page .buttomArea .backButton{
     padding: 2px 7px;
 }
 
 #WelcomePage .page .welcomeText{
-margin: 10px 0;
+margin: 0.5rem 0;
 }
 
 
 .radioList{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 100px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 110px), 1fr));
     border: 2px solid rgb(54, 54, 54);
     position: relative;
     isolation: isolate;
@@ -46,7 +138,10 @@ margin: 10px 0;
     background: rgb(0, 149, 246);
     pointer-events: none;
     overflow: hidden;
-    transition: clip-path 0.25s ease;
+    transition: clip-path 0.25s ease, opacity 0.25s ease-in-out;
+}
+.radioList:not(:has(input:checked)) .radioPointer{
+opacity: 0;
 }
 .radioList input {
     position: absolute;
@@ -62,6 +157,68 @@ margin: 10px 0;
     position: relative;
     z-index: 2;
     text-align: center;
-    background-color: #000;
+    background-color:#000000cf;
     border-radius: 3px;
+    color: #fff;
+    transition: color calc(var(--quickTransition)/1.5) ease-in-out;
+}
+.radioList > div:has(input:checked) label{
+    cursor: default;
+}
+.radioList > div:has(input:not(:checked)) label:hover{
+color: #ffffffc2;
+}
+
+#WelcomePage .InputArea,#WelcomePage .selectArea {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0.5rem 0;
+}
+#WelcomePage .InputArea input:focus{
+    border-color: var(--spotlight-color);
+}
+#WelcomePage .InputArea label{
+    padding: 0 5px;
+    margin-bottom: 0.3rem;
+}
+#WelcomePage .InputArea input {
+    border: 2px solid rgb(54, 54, 54);
+    border-radius: 7px;
+    caret-color: var(--spotlight-color);
+    color: #fff;
+    font-size: 1.1rem;
+    height: 100%;
+    outline: none;
+    padding: 0 10px;
+    height: 2.2rem;
+    transition: all .4s ease;
+    width: 100%;
+    background-color: rgb(var(--bg-color));
+}
+#WelcomePage .InputArea .noteBox,#WelcomePage .selectArea .noteBox{
+    color: #ffffff;
+    border-radius: 7px;
+    font-weight: 600;
+    line-height: 1.2;
+    gap: 0.3rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+#WelcomePage .InputArea .error,#WelcomePage .selectArea .error{
+    background-color: #ff000057;
+    border: solid #ff0000;
+}
+#WelcomePage .InputArea .warning,#WelcomePage .selectArea .warning{
+    background-color: #fff20057;
+    border: solid #ffdb00;
+}
+#WelcomePage .InputArea .noteBox a{
+    text-align:end;
+}
+#WelcomePage .selectArea p{
+    padding: 0 5px;
 }

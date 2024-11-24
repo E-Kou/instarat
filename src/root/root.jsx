@@ -6,7 +6,7 @@ export default function Root() {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    if(localStorage.getItem("loadedApp") !== "Loaded"){
+    if(!!localStorage.getItem("connectedAs")){
       return navigate("/welcome");
     }
   },[])

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "insta-rat-gr",
     "public": "build",
     "ignore": [
       "firebase.json",
