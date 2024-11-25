@@ -183,7 +183,7 @@ color: #ffffffc2;
     margin-bottom: 0.3rem;
 }
 #WelcomePage .InputArea input {
-    border: 2px solid rgb(54, 54, 54);
+    border: var(--border-edge);
     border-radius: 7px;
     caret-color: var(--spotlight-color);
     color: #fff;

@@ -6,12 +6,12 @@ export default function Root() {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    if(!!localStorage.getItem("connectedAs")){
+    if(!localStorage.getItem("connectedAs")){
       return navigate("/welcome");
     }
   },[])
   return (
-    <div>
+    <div className='mainWindow'>
        <Navbar/>
         <Outlet />
     </div>

@@ -1,0 +1,282 @@
+ /* Sidebar css */
+    
+ .instaratSidebar .flex {
+    display: flex;
+    align-items: center;
+  }
+  .instaratSidebar .nav_image {
+    display: flex;
+    justify-content: center;
+  }
+  .instaratSidebar .nav_image img {
+    height: 35px;
+    object-fit: cover;
+  }
+  
+  /* Sidebar */
+  .instaratSidebar {
+    /* height: calc(100vh - 60px - var(--nav-height)); */
+    padding: 20px 10px;
+    width: 275px;
+    min-width: 275px;
+    border-right: var(--border-edge);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+  .instaratSidebar.close:not(:hover) {
+    width: calc(55px + 30px);
+    min-width:  calc(55px + 30px);
+    overflow: hidden;
+  }
+  .instaratSidebar.logo_items {
+    gap: 8px;
+  }
+  .instaratSidebar.logo_name {
+    font-size: 22px;
+    color: #333;
+    font-weight: 500px;
+    transition: all 0.3s ease;
+  }
+  .instaratSidebar.close:not(:hover) .logo_name,
+  .instaratSidebar.close:not(:hover) #lock-icon,
+  .instaratSidebar.close:not(:hover) #sidebar-close {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .instaratSidebar #minimize-sidebar:not(.hide),
+  .instaratSidebar #sidebar-close, .instaratSidebar #lock-icon.show {
+    color: #ffffff6b;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    min-width: 30px;
+    min-height: 30px;
+  }
+  .instaratSidebar #lock-icon.show{
+    opacity: 1 !important;
+  }
+  .instaratSidebar.only-hoverable #minimize-sidebar, .instaratSidebar.only-hoverable #lock-icon, .primary-info .top-primary #greedings-username{
+    display: none;
+  }
+  .instaratSidebar #lock-icon:hover, .instaratSidebar #minimize-sidebar:hover{
+color: #fff;
+
+  }
+
+  .instaratSidebar #lock-icon, .instaratSidebar #minimize-sidebar.hide{
+    width: 0;
+    padding: 0;
+    opacity: 0;
+    margin: 0;
+  }
+  .instaratSidebar #sidebar-close, #sidebar-open {
+    display: none;
+  }
+  .account-info-down{ 
+    flex-grow: 1;
+    flex-wrap: wrap;
+    align-content: space-between;
+    display: flex;
+}
+  .instaratSidebar .menu_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+    overflow-y: auto;
+    flex: 1;
+    overscroll-behavior: contain;
+  }
+  .instaratSidebar .menu_container::-webkit-scrollbar {
+    display: none;
+  }
+  .instaratSidebar .menu_title {
+    position: relative;
+    height: 40px;
+    color: #fff;
+    font-weight: 600;
+  }
+  .instaratSidebar .menu_title .title {
+    margin-left: 15px;
+    transition: all 0.3s ease;
+    display: block;
+    width: max-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .instaratSidebar.close:not(:hover) .title {
+    opacity: 0;
+    transform: translateX(-20%) scale(0.8);
+}
+  .instaratSidebar .menu_title .line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 20px;
+    border-radius: 25px;
+    background: #aaa;
+    transition: all 0.3s ease;
+  }
+  .instaratSidebar .menu_title .line {
+    opacity: 0;
+  }
+  .instaratSidebar.close:not(:hover) .line {
+    opacity: 1;
+  }
+  .instaratSidebar .item {
+    list-style: none;
+    cursor:pointer;
+  }
+  .instaratSidebar .link {
+    text-decoration: none;
+    border-radius: var(--button-BR);
+    margin: 8px;
+    color: #e0e0e0;
+    transition: all 0.17s;
+    background-color: transparent;
+    padding: 3px;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .instaratSidebar .link.active{
+background-color: #1e5af163;
+  }
+  
+  .instaratSidebar .link:hover:not(.active) {
+    color: #fff;
+    background-color: rgb(255, 255, 255, .1);
+    overflow: hidden;
+  }
+  .instaratSidebar .link:active{
+    transform: scale(0.95);
+  }
+  .instaratSidebar .link span {
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.3s, color 0.17s, transform 0.3s;
+  }
+  .instaratSidebar.close:not(:hover) .menu_item .item .link span{
+opacity: 0;
+transform: translateX(20px);
+  }
+  .instaratSidebar .link svg {
+    height: 40px;
+    min-width: 40px;
+    display: flex;
+    font-size: 22px;
+    align-items: center;
+    justify-content: center;
+    transition: transform 500ms linear(0 0%, 0 1.8%, 0.01 3.6%, 0.03 6.35%, 0.07 9.1%, 0.13 11.4%, 0.19 13.4%, 0.27 15%, 0.34 16.1%, 0.54 18.35%, 0.66 20.6%, 0.72 22.4%, 0.77 24.6%, 0.81 27.3%, 0.85 30.4%, 0.88 35.1%, 0.92 40.6%, 0.94 47.2%, 0.96 55%, 0.98 64%, 0.99 74.4%, 1 86.4%, 1 100%);
+  }
+  
+  .instaratSidebar .sidebar_profile {
+    padding-top: 15px;
+    margin-top: 15px;
+    gap: 15px;
+  }
+  .instaratSidebar .sidebar_profile .connector {
+    border: none;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: var(--button-BR);
+    color: #fff;
+    padding: 10px;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: all 0.17s;
+    position: relative;
+  }
+  .instaratSidebar .sidebar_profile .connector .buttonBox {
+    min-height: inherit;
+    width: 100%;
+    overflow: hidden;
+  }
+  .instaratSidebar .sidebar_profile .connector button{
+    width: 100%;
+    min-height: inherit;
+    outline: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #fff;
+    border-radius: inherit;
+    transition: all 0.4s ease;
+    background: none;
+    font-weight: 500;
+    font-family: system-ui;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+  .instaratSidebar .sidebar_profile .connector button span{
+    width: 100%;
+    transition: all 300ms;
+    white-space: nowrap;
+    text-align: start;
+  }
+  .instaratSidebar.close:not(:hover) .sidebar_profile .connector button span{
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .instaratSidebar .sidebar_profile .connector:hover{
+        background-color: rgb(255, 255, 255, .1);
+  }
+  .instaratSidebar .sidebar_profile .lastSession > div{
+    min-width: 100%;
+    overflow: hidden;
+  }
+  .instaratSidebar .sidebar_profile .lastSession > div p {
+    min-width: 100%;
+    font-size: 15px;
+    text-align: center;
+    color: #161616;
+    transition: opacity 0.17s;
+    width: max-content;
+  }
+  .instaratSidebar .sidebar_profile .lastSession{
+width: 100%;
+overflow: hidden;
+transition: all 300ms;
+transition-delay: 100ms;
+transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+display: grid;
+grid-template-rows: 1fr;
+opacity: 1;
+  }
+  .instaratSidebar.close:not(:hover) .sidebar_profile .lastSession{
+opacity: 0;
+transition-delay: 0ms;
+transition: all 300ms;
+grid-template-rows: 0fr !important;
+  }
+  .instaratSidebar .sidebar_profile p span{
+    display: block;
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+  .instaratSidebar .i {
+    font-family: boxicons !important;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    display: inline-block;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+.instaratSidebar * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}

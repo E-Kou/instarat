@@ -1,0 +1,6 @@
+.mainWindow{
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
