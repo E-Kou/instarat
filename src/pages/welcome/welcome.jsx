@@ -254,6 +254,11 @@ if(!localStorage.getItem("connectedAs")){
 }
     },[])
 
+    function logout(){
+      localStorage.removeItem("connectedAs")
+      setHasBeenLoaded(false);
+    }
+
     function firstStep(){
         sliderRef.slickGoTo(1);
     }
@@ -329,8 +334,6 @@ if(!localStorage.getItem("connectedAs")){
           }
           else if (!password.match(/([0-9])/)) {
            finalOBJ.password='Ο κωδικός σας πρέπει να περιέχει νούμερα.'
-          } else if (!password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
-            finalOBJ.password='Ο κωδικός σας πρέπει να περιέχει ειδικά συμβολά (@, #, ! κτλ.).'
           }
          else if (hasSequentialChars(password)>1) {
           finalOBJ.password='Ο κωδικός σας απαγορεύεται να έχει απλές ακολουθίες χαρακτήρων.'
@@ -399,14 +402,16 @@ if(!localStorage.getItem("connectedAs")){
 if(scrollTab != 2){
   setScrollAction(null);
 } else if (scrollAction == 'back'){
-  setTimeout(()=>{firstStep()},300)
-  setTimeout(()=>{setShowScrollBack(true)},600)
+  setTimeout(()=>{firstStep(); setTimeout(()=>{setShowScrollBack(true)},300)},300)
 
 }},[scrollTab])
 useEffect(()=>{
-if(!!showScrollBack&& (scrollbeforeTab!=2 || scrollTab!=2)){
+if(!!showScrollBack&& scrollbeforeTab!=2 && scrollTab!=2){
   setShowScrollBack(false);
 }
+console.log('scrollbeforeTab: ' + scrollbeforeTab)
+console.log('scrollTab: ' + scrollTab)
+console.log('showScrollBack: ' + showScrollBack)
 },[scrollbeforeTab,scrollTab,showScrollBack])
 
 
@@ -441,7 +446,7 @@ if(!!showScrollBack&& (scrollbeforeTab!=2 || scrollTab!=2)){
 
   return (
     <div id='WelcomePage'>
-        {hasBeenLoaded != true?
+        {hasBeenLoaded === false?
                 <Slider
                 ref={slider => {
                   sliderRef = slider;
@@ -449,10 +454,9 @@ if(!!showScrollBack&& (scrollbeforeTab!=2 || scrollTab!=2)){
                 {...settings}
               >
        <div inert={scrollbeforeTab!==0?"inert":undefined} className='page'> 
-        <img src='logo'/>
-        <p className='logoDesign'>Λογότυπος από τον Μιχάλη ...</p>
+        <img className='logo' src='/instarat_low.png'/>
         <h1>Καλωσορίσατε στο InstaRat</h1>
-      <div className='welcomeText'> <p>Το παρόν web-app κατασκευάστηκε από τον μαθητή <Link to='/user/koutsogiann1s'><b>Ευάγγελο Κουτσογιάννη</b></Link> για την ενημέρωση των νέων περί των κινδύνων των κοινωνικών δικτύων. Συνδιάζει τη χρήση Τεχνητής Νοημοσύνης και 
+      <div className='welcomeText'> <p>Το παρόν web-app κατασκευάστηκε από τον μαθητή <Link to='/user/koutsogiann1s'><b>Ευάγγελο Κουτσογιάννη</b></Link> για την ενημέρωση των νέων περί των κινδύνων των κοινωνικών δικτύων. Συνδιάζει τη χρήση Τεχνητής Νοημοσύνης και βιωματικής μάθησης σε ένα πλαίσιο replica κοινωνικού δικτύου.
         </p>
         <Link to='about'>Μαθετε περισσότερα</Link>
         </div> 
@@ -562,8 +566,12 @@ if(!!showScrollBack&& (scrollbeforeTab!=2 || scrollTab!=2)){
                   </div>  
                 </div>
                 </Slider>
-    :<p>Already Loaded</p>}
-        
+    :<div className='loggedInpage'>
+      <img className='logo' src='/instarat_low.png'/>
+      <h1>Είστε ήδη συνδεδεμένος</h1>
+      <Link to='/' className='mainButton'>Συνέχεια στην αρχική σελίδα</Link>
+      <button onClick={logout} className='secondaryButton'>Αποσύνδεση</button>
+      </div>}  
     </div>
   )
 }

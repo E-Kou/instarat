@@ -1,0 +1,25 @@
+.loginBanner{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ffffff38;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.loginBanner img{
+    height: 3rem;
+    width: 3rem;
+}
+.loginBanner span{
+    font-family: 'logoTXT';
+    font-weight: 100 !important;
+    font-size: 2rem;
+    display: block;
+    transform: translateY(0.25rem);
+}
+
+.loginBanner .leftArea{
+display: flex;
+align-items: center;
+gap: 1rem;
+}

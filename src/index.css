@@ -13,6 +13,7 @@
   --simple-shadow: 0px 4px 13px #0000002b;
   --attention-icon: red;
   --side-txt: #393939;
+  --highlight-bg:#232323;
   --semi-transparent-bg: #fbfbfdcc;
   --sub-transparent-bg: #fbfbfdf2;
   --hover-dark-bg: rgba(0, 0, 0, 0.226);
@@ -25,6 +26,10 @@
   -moz-osx-font-smoothing: grayscale;
   color: rgba(255, 255, 255, 0.87);
   background-color: rgb(var(--bg-color));
+}
+@font-face {
+  font-family: 'logoTXT';
+  src: url('@/fonts/logoText.otf') format("opentype");
 }
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -59,27 +64,6 @@ main{
   justify-content: flex-start;
 }
 
-/* Lenis SmoothScrolling CSS */
-
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
 
 
 ::selection {
@@ -91,6 +75,54 @@ a:focus-visible{
   outline: 2.5px dashed #ffffff;
   outline-offset: 2.5px;
 }
+
+
+
+*, *::before, *::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: sans-serif;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+p {
+  text-wrap: pretty;
+}
+p {
+  text-wrap: pretty;
+}
+
+body{
+  background-color: var(--body-color);
+  margin: 0;
+  font-family: system-ui;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.padBox{
+  padding: 0 10px;
+}
+.row{
+  max-width: var(--row-max-width);
+}
+.center-row{
+  max-width: var(--row-max-width);
+  margin: 0 auto;
+}
+.forced-center-row{
+  width: var(--row-max-width);
+  margin: 0 auto;
+}
+a{
+  color: #68bff9;
+  text-decoration: none;
+}
+
 
 .mainButton{
   background-color: var(--spotlight-color);
@@ -147,7 +179,7 @@ a:focus-visible{
   background: none;
   font-size: 0.85rem;
   line-height: 0.85rem;
-  color: var(--spotlight-color);
+  color: #fff;
   font-weight: 600;
   border-radius: var(--button-BR);
   cursor: pointer;
@@ -223,43 +255,3 @@ font-weight: 700;
   background-color: var(--light-color);
 
 } */
-
-
-
-*, *::before, *::after{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-
-body{
-  background-color: var(--body-color);
-  margin: 0;
-  font-family: system-ui;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h2{
-  font-family: alpha-omega;
-}
-.padBox{
-  padding: 0 10px;
-}
-.row{
-  max-width: var(--row-max-width);
-}
-.center-row{
-  max-width: var(--row-max-width);
-  margin: 0 auto;
-}
-.forced-center-row{
-  width: var(--row-max-width);
-  margin: 0 auto;
-}
-a{
-  color: #68bff9;
-  text-decoration: none;
-}

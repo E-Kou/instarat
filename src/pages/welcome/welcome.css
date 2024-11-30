@@ -9,12 +9,32 @@
 body:has(#WelcomePage){
     justify-content: center;
 }
+#WelcomePage .loggedInpage{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+#WelcomePage .loggedInpage .secondaryButton{
+    margin-top: -0.5rem;
+}
+#WelcomePage .loggedInpage h1{
+    font-size: 1.7rem;
+}
 #WelcomePage .page{
     padding: 20px;
+}
+#WelcomePage .page img.logo,#WelcomePage .loggedInpage img.logo{
+    width: 10rem;
+    height: 10rem;
 }
 #WelcomePage .page > svg{
     height: 5rem;
     width: 5rem;
+}
+#WelcomePage .page > h1{
+margin: 0.3rem 0;
 }
 #WelcomePage .slick-slider{
     width: 100%;
@@ -120,7 +140,7 @@ align-items: center;
 }
 
 #WelcomePage .page .welcomeText{
-margin: 0.5rem 0;
+    margin: 0.5rem 0 0.7rem;
 }
 
 

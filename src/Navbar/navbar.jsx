@@ -19,7 +19,7 @@ function BarButton(params){
 }
 
 
-export default function Navbar() {
+export function Navbar() {
   const [sidebarLocked, setSidebarLocked]= useState(true);
     const [loading, setLoading] = useState(false);
 
@@ -66,6 +66,25 @@ export default function Navbar() {
 </AnimatePresence>
             </div>  
                   </div>
+    </div>
+  </nav>
+  )
+}
+
+
+
+export default function MobileNavbar() {
+
+  return (
+    <nav className={`instaratMobileSidebar`}>
+    <div className="menu_container">
+      <ul className="menu_items">
+          <BarButton icon={<IconHome/>} path='/' title='Αρχική σελίδα' end={true}/>
+          <BarButton icon={<IconSearch />} path='/search' title='Αναζήτηση'/>
+          <BarButton icon={<IconSquareRoundedPlus/>} path='/services/savings' title='Νέα δημοσίευση'/>
+          <BarButton icon={<IconMessageCircle/>} path='/dms' title='Μηνύματα'/>
+          <BarButton icon={<IconUser/>} path='/account' title='Ο λογαριασμός σας'/>
+  </ul>
     </div>
   </nav>
   )

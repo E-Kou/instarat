@@ -134,16 +134,18 @@ color: #fff;
   .instaratSidebar .link {
     text-decoration: none;
     border-radius: var(--button-BR);
-    margin: 8px;
+    margin: 8px 0;
     color: #e0e0e0;
     transition: all 0.17s;
     background-color: transparent;
-    padding: 3px;
+    padding: 0.35rem;
     display: flex;
     gap: 0.5rem;
+    font-weight: 700;
   }
   .instaratSidebar .link.active{
-background-color: #1e5af163;
+background-color: #fff;
+color: #000;
   }
   
   .instaratSidebar .link:hover:not(.active) {
@@ -164,8 +166,8 @@ opacity: 0;
 transform: translateX(20px);
   }
   .instaratSidebar .link svg {
-    height: 40px;
-    min-width: 40px;
+    height: 38px;
+    min-width: 38px;
     display: flex;
     font-size: 22px;
     align-items: center;
@@ -279,4 +281,69 @@ grid-template-rows: 0fr !important;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+
+
+
+.instaratMobileSidebar{
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+isolation: isolate;
+}
+.instaratMobileSidebar::before{
+  content: "";
+  height: 160%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 2;
+  background: linear-gradient(
+      to top,
+      hsl(0, 0%, 0%) 0%,
+      hsla(0, 0%, 0%, 0.987) 8.1%,
+      hsla(0, 0%, 0%, 0.951) 15.5%,
+      hsla(0, 0%, 0%, 0.896) 22.5%,
+      hsla(0, 0%, 0%, 0.825) 29%,
+      hsla(0, 0%, 0%, 0.741) 35.3%,
+      hsla(0, 0%, 0%, 0.648) 41.2%,
+      hsla(0, 0%, 0%, 0.55) 47.1%,
+      hsla(0, 0%, 0%, 0.45) 52.9%,
+      hsla(0, 0%, 0%, 0.352) 58.8%,
+      hsla(0, 0%, 0%, 0.259) 64.7%,
+      hsla(0, 0%, 0%, 0.175) 71%,
+      hsla(0, 0%, 0%, 0.104) 77.5%,
+      hsla(0, 0%, 0%, 0.049) 84.5%,
+      hsla(0, 0%, 0%, 0.013) 91.9%,
+      hsla(0, 0%, 0%, 0) 100%
+    );
+    pointer-events: none;
+}
+.instaratMobileSidebar .menu_container .menu_items{
+  display: flex;
+  list-style: none;
+  gap: 0.2rem;
+  justify-content: space-around;
+  position: relative;
+  z-index: 3;
+}
+.instaratMobileSidebar .menu_container .menu_items li a{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 0.7rem 0.6rem;
+  padding-top: 1rem;
+}
+.instaratMobileSidebar .menu_container .menu_items li a svg{
+  height: 1.96rem;
+  width: 1.95rem;
+}
+.instaratMobileSidebar .menu_container .menu_items li a span{
+  display: none;
 }
