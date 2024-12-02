@@ -20,7 +20,7 @@ function App() {
     },
     // user pages must be accessible even while not loged in for the owners' profile.
     {path:'/user/:username',
-      element:<Userpage/>
+      element:<Root focreLogin={false}><Userpage/></Root>
     },
   ])
 

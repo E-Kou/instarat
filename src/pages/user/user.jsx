@@ -1,5 +1,5 @@
-import LoginBanner from "@/utils/loginBanner/loginBanner";
-import { useRef, useState } from "react";
+import { IconLinkOff, IconShareOff, IconTagOff } from "@tabler/icons-react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import WelocomeToHere from '../../utils/welocometoHere';
@@ -8,9 +8,14 @@ import './user.css';
 export default function Userpage() {
   const { username } = useParams();
   let sliderRef = useRef(null);
-
-
+  
   const [currentTab, setCurrentTab] = useState(null);
+  const [available, setAvailable] = useState(0);
+
+  useEffect(()=>{
+    setAvailable(!!localStorage.getItem("connectedAs"));
+  },[])
+
 
   const settings = {
     dots: false,
@@ -21,13 +26,13 @@ export default function Userpage() {
     autoplay: false,
     adaptiveHeight: true,
     arrows: false,
-    afterChange: current => setCurrentTab(current)
+    className:'userCarousel',
+    afterChange: current => setCurrentTab(current),
+    beforeChange: (current, next) => setCurrentTab(next)
   };
 
   return (
-    <div id='userPage'>
-      <LoginBanner />
-      <main>
+    <main id='userPage'>
       <div id='userHeader'>
         <div id="userTop">
           <img className="pfp" src="https://cdn.vectorstock.com/i/500p/64/79/retro-atomic-stars-seamless-pattern-on-orange-vector-44636479.jpg" />
@@ -36,15 +41,15 @@ export default function Userpage() {
           <div className="followCounter">
             <div>
               <h2>20k</h2>
-              <h3>Ακόλουθοι</h3>
+              <p>Ακόλουθοι</p>
             </div>
             <div>
               <h2>1.3k</h2>
-              <h3>Ακολουθάει</h3>
+              <p>Ακολουθάει</p>
             </div>
             <div>
               <h2>20</h2>
-              <h3>Αναρτήσεις</h3>
+              <p>Αναρτήσεις</p>
             </div>
           </div>
           </div>
@@ -74,12 +79,28 @@ export default function Userpage() {
         {...settings}
       >
         <div className="userTab">
-          {localStorage.getItem("loadedApp") !== "Loaded" ? <WelocomeToHere className='mainButton'>Ορίστε στοίχεια χρήστη για να δείτε περισσότερα</WelocomeToHere>
+          {!available ? <WelocomeToHere className='mainButton'>Ορίστε στοίχεια χρήστη για να δείτε περισσότερα</WelocomeToHere>
             :
-            <div>Posts</div>
+            <div className="userTab">
+            <div className="mainTabBox">
+            <IconShareOff/>
+            <p>Δεν υπάρχουν αναρτήσεις</p>
+            </div>
+          </div>
           }</div>
+          <div className="userTab">
+            <div className="mainTabBox">
+            <IconTagOff/>
+            <p>Δεν βρέθηκαν αναφορές</p>
+            </div>
+          </div>
+          <div className="userTab">
+            <div className="mainTabBox">
+            <IconLinkOff/>
+            <p>Εξωτερικοί σύνδεσμοι μη διαθέσιμοι</p>
+            </div>
+          </div>
       </Slider>
-      </main>
-    </div>
+    </main>
   )
 }

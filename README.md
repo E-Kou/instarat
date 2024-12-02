@@ -1,8 +1,18 @@
-# React + Vite
+<p align="center" width="100%">
+    <img width="33%" alt='Instarat Logo' src="public/instarat_low.png"> 
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Instarat
 
-Currently, two official plugins are available:
+This website was created for the 2025 Safer Internet Day Contest of [saferinternet4kids.gr](https://saferinternet4kids.gr/sid/sid-2025/challenges-sid-2025/challenges_sid_2025/) exclusively by Evangelos Koutsogiannis. Its main goal is to inform students of the dangers social media might present as well as how to keep ourselves safe from them.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+* ReactJS
+The perfect rendering library for such a dynamic web-app
+* Firebase
+Free & easy hosting, database, analytics etc.
+
+
+
+##Ελπίζω η δουλειά μου να σας άρεσε.
+Κατεσκυάστηκε με μεράκι από τον Ευάγγελο Κουτσογιάννη (12/2024)

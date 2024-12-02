@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 
 import { IconHome, IconLayoutSidebarFilled, IconLayoutSidebarLeftCollapseFilled, IconMenu2, IconMessageCircle, IconSearch, IconSquareRoundedPlus, IconUser } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -19,16 +19,29 @@ function BarButton(params){
 }
 
 
-export function Navbar() {
+export default function Navbar() {
   const [sidebarLocked, setSidebarLocked]= useState(true);
-    const [loading, setLoading] = useState(false);
+    const [available, setAvailable] = useState(false);
+    const [width, setWidth] = useState(false);
+    function reloadWidth(){
+      setWidth(window.innerWidth)
+    }
+    useEffect(()=>{
+      setAvailable(!!localStorage.getItem("connectedAs"));
+      reloadWidth();
+      window.addEventListener('resize',reloadWidth)
+      return()=>{window.removeEventListener('resize',reloadWidth)}
+    },[])
+    
 
     function toggleSidebar(){
       setSidebarLocked(!sidebarLocked);
   }
-
+  if(!!available){
   return (
-    <nav className={`instaratSidebar ${sidebarLocked ? 'locked' :'close'}`}>
+    <nav className={`${width > 1200?'instaratSidebar':'instaratMobileSidebar'} ${sidebarLocked ? 'locked' :'close'}`}>
+      {width > 1200 ? 
+      <>
     <div className="logo_items flex">
       <span className="nav_image">
         <img id="closed-img" src="" alt="logo_img" />
@@ -51,41 +64,34 @@ export function Navbar() {
 
       <div className={`connector`}>
             <AnimatePresence>
-        {!loading && <motion.div exit={{width:0, height:50, opacity:0}} className="buttonBox">
-        <button className="disconnect-btn" onClick={()=>{setLoading(true)}} disabled={loading}><IconUser/><span>Ο λογαριασμός σας</span></button>
+       <motion.div exit={{width:0, height:50, opacity:0}} className="buttonBox">
+        <button className="disconnect-btn"><IconUser/><span>Ο λογαριασμός σας</span></button>
             </motion.div>
-}
+
 </AnimatePresence>
             </div> 
         <div className={`connector`}>
             <AnimatePresence>
-        {!loading && <motion.div exit={{width:0, height:50, opacity:0}} className="buttonBox">
-        <button className="disconnect-btn" onClick={()=>{setLoading(true)}} disabled={loading}><IconMenu2/><span>Περισσότερα</span></button>
+         <motion.div exit={{width:0, height:50, opacity:0}} className="buttonBox">
+        <button className="disconnect-btn"><IconMenu2/><span>Περισσότερα</span></button>
             </motion.div>
-}
+
 </AnimatePresence>
             </div>  
                   </div>
     </div>
+  </>:
+     <div className="menu_container">
+     <ul className="menu_items">
+         <BarButton icon={<IconHome/>} path='/' title='Αρχική σελίδα' end={true}/>
+         <BarButton icon={<IconSearch />} path='/search' title='Αναζήτηση'/>
+         <BarButton icon={<IconSquareRoundedPlus/>} path='/services/savings' title='Νέα δημοσίευση'/>
+         <BarButton icon={<IconMessageCircle/>} path='/dms' title='Μηνύματα'/>
+         <BarButton icon={<IconUser/>} path='/account' title='Ο λογαριασμός σας'/>
+ </ul>
+   </div> 
+  }
   </nav>
   )
 }
-
-
-
-export default function MobileNavbar() {
-
-  return (
-    <nav className={`instaratMobileSidebar`}>
-    <div className="menu_container">
-      <ul className="menu_items">
-          <BarButton icon={<IconHome/>} path='/' title='Αρχική σελίδα' end={true}/>
-          <BarButton icon={<IconSearch />} path='/search' title='Αναζήτηση'/>
-          <BarButton icon={<IconSquareRoundedPlus/>} path='/services/savings' title='Νέα δημοσίευση'/>
-          <BarButton icon={<IconMessageCircle/>} path='/dms' title='Μηνύματα'/>
-          <BarButton icon={<IconUser/>} path='/account' title='Ο λογαριασμός σας'/>
-  </ul>
-    </div>
-  </nav>
-  )
 }
