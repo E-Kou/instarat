@@ -1,0 +1,31 @@
+.dataForm input,.dataForm textarea{
+    padding: 0.3rem;
+    margin: 0.3rem 0;
+}
+
+.dataForm button{
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    margin: 0.3rem;
+}
+.dataForm input[type="file"]{
+    background-color: var(--spotlight-color);
+    display: block;
+    width: 100%;
+    margin: 0.3rem 0;
+}
+.dataForm textarea{
+    min-height: 4rem;
+}
+.dataForm{
+   margin: 0.7rem 0;
+   width: 100%;
+}
+.addUserBox h2{
+    margin: 1rem 0 0.3rem;
+    border-bottom: 2px dashed var(--spotlight-color);
+    padding-bottom: 0.6rem;
+}
+.addUserBox{
+    padding: 1rem;
+}

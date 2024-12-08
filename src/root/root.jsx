@@ -8,7 +8,7 @@ export default function Root({focreLogin = true, children}) {
 
   useEffect(()=>{
     if(!localStorage.getItem("connectedAs") && !!focreLogin){
-      return navigate("/welcome");
+      return toHereFN();
     }
   },[])
   return (

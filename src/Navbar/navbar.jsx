@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useContext } from 'react';
 
+import SSizeContext from '@/utils/screenSize';
 import { IconHome, IconLayoutSidebarFilled, IconLayoutSidebarLeftCollapseFilled, IconMenu2, IconMessageCircle, IconSearch, IconSquareRoundedPlus, IconUser } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
@@ -21,23 +22,13 @@ function BarButton(params){
 
 export default function Navbar() {
   const [sidebarLocked, setSidebarLocked]= useState(true);
-    const [available, setAvailable] = useState(false);
-    const [width, setWidth] = useState(false);
-    function reloadWidth(){
-      setWidth(window.innerWidth)
-    }
-    useEffect(()=>{
-      setAvailable(!!localStorage.getItem("connectedAs"));
-      reloadWidth();
-      window.addEventListener('resize',reloadWidth)
-      return()=>{window.removeEventListener('resize',reloadWidth)}
-    },[])
+    const { width,loggedIn } = useContext(SSizeContext);
     
 
     function toggleSidebar(){
       setSidebarLocked(!sidebarLocked);
   }
-  if(!!available){
+  if(!!loggedIn){
   return (
     <nav className={`${width > 1200?'instaratSidebar':'instaratMobileSidebar'} ${sidebarLocked ? 'locked' :'close'}`}>
       {width > 1200 ? 

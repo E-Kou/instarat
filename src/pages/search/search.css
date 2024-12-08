@@ -1,0 +1,86 @@
+
+#searchMain{
+    height: 100vh;
+    flex-direction: row;
+    isolation: isolate;
+}
+#searchMain .searchUI{
+    overflow: auto;
+}
+#searchMain #userMap, #searchMain .searchUI{
+    width: 50%;
+    height: 100%;
+}
+#searchMain #locationSuggestion{
+background-color: var(--general-input-color);
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0.5rem;
+gap: 0.7rem;
+border-radius: var(--button-BR);
+}
+#searchMain #locationSuggestion img{
+width: 2rem;
+transform: scale(1.7);
+object-fit: contain;
+}
+#searchMain .searchUI .searchTop {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    border-bottom: var(--border-edge);
+}
+#searchMain .searchUI h1{
+    margin-bottom: -0.5rem;
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+#searchMain .searchUI .InputArea:has(input:focus) {
+    outline-width: 3px;
+}
+#searchMain .searchUI .InputArea {
+    display: flex;
+    align-items: center;
+    background-color: rgb(54, 54, 54);
+    border-radius: var(--button-BR);
+    cursor:text;
+    transition: all calc(var(--quickTransition) / 2);
+    outline: var(--spotlight-color) solid 0px;
+}
+#searchMain .searchUI .InputArea svg{
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0.7rem;
+    box-sizing: content-box;
+}
+
+#searchMain .searchUI .InputArea input{
+border: none;
+width: 100%;
+padding: 0.6rem 0;
+color: #fff;
+font-size: 1.3rem;
+background-color: transparent;
+outline: none;
+}
+
+#searchMain .searchUI .userList{
+    padding: 1rem;
+}
+
+
+@media screen and (max-width:750px) {
+    #searchMain{
+    flex-direction: column;
+    }
+    #searchMain .searchUI,#searchMain #userMap{
+    width: 100%;
+    height: 50%;
+    }
+    
+}

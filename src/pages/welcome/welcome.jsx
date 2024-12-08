@@ -1,7 +1,7 @@
 import { IconChevronLeft, IconChevronRight, IconLogin2, IconX } from '@tabler/icons-react';
 import levenshtein from 'js-levenshtein';
 import { AnimatePresence, motion } from 'motion/react';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import useMeasure from 'react-use-measure';
@@ -438,7 +438,7 @@ console.log('showScrollBack: ' + showScrollBack)
 
     function ListItem({name, text, category, ...otherProps}){
       return <div ref={schTab === name ? schTabElementRef : null}> 
-      <input type="radio" checked={schTab == name} aria-label={text} aria-checked={schTab == name} {...otherProps} onChange={() => {setSchTab(name)}} id={name} name={category} value={name}/>
+      <input type="radio" checked={schTab == name} aria-label={text} aria-checked={schTab == name} {...otherProps} onChange={() => {setSchTab(name);setDataWarning((({ school, ...o }) => o)(dataWarning))}} id={name} name={category} value={name}/>
       <label htmlFor={name}>{text}</label>
       </div>
       }
@@ -512,10 +512,10 @@ console.log('showScrollBack: ' + showScrollBack)
                 <p>Είμαι μαθητής</p>
                 <div className='radioList'>
                   <div className='radioPointer' role='radiogroup' ref={containerRef}/>
-                    <ListItem category='school' onInput={()=>{setDataWarning((({ school, ...o }) => o)(dataWarning))}} name='elementarySchool' text='Δημοτικού'/>
-<ListItem category='school' name='middleSchool' onInput={()=>{setDataWarning((({ school, ...o }) => o)(dataWarning))}} text='Γυμνασίου'/>
-<ListItem category='school' name='highSchool' onInput={()=>{setDataWarning((({ school, ...o }) => o)(dataWarning))}} text='Λυκείου'/>
-<ListItem category='school' name='completedSchool' onInput={()=>{setDataWarning((({ school, ...o }) => o)(dataWarning))}} text='Τελειόφοιτος'/>
+                    <ListItem category='school' name='elementarySchool' text='Δημοτικού'/>
+<ListItem category='school' name='middleSchool' text='Γυμνασίου'/>
+<ListItem category='school' name='highSchool' text='Λυκείου'/>
+<ListItem category='school' name='completedSchool' text='Τελειόφοιτος'/>
 </div>
 <AnimatePresence>
 {dataWarning.school &&

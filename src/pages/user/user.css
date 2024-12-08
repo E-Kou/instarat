@@ -7,8 +7,8 @@ border-radius: var(--popup-BR);
 #userPage #userHeader .pfp{
  border-radius: 100vmax;
  aspect-ratio: 1/1;
- height: 20rem;
  width: 20rem;
+ max-width: 30vw;
  object-fit: cover;
     }
     #userPage #userHeader >div{
@@ -17,8 +17,28 @@ border-radius: var(--popup-BR);
         gap: 1rem;
         justify-content: space-between;
     }
+ #userPage #userHeader.mobile >div{
+align-items: center;
+    }
+    #userPage #userHeader.mobile >div h1{
+        padding: 0;
+        flex: 1;
+        letter-spacing: 0.05rem;
+        text-align: start;
+        line-height: 1.2;
+    }
+    #userPage #userHeader.mobile .followCounter h2{
+        font-size: 2rem;
+    }
+    #userPage #userHeader.mobile .followCounter p{
+        font-size: 0.8rem;
+    }
     #userPage #userHeader >div#userTop{
         margin-bottom: 1rem;
+    }
+    #userPage #userHeader.mobile >div#userTop{
+        justify-content: flex-start;
+        flex-wrap: wrap;
     }
     #userPage #userHeader >div#userTop #topLeft{
 display: flex;
@@ -38,7 +58,10 @@ display: flex;
 gap: 1rem;
 align-items: center;
     }
-    #userPage #userHeader >div#userTop .followCounter{
+    #userPage #userHeader.mobile #userBelow #topLeft{
+        width: 100%;
+    }
+    #userPage #userHeader .followCounter{
 display: flex;
 justify-content: space-around;
 text-align: center;
@@ -46,14 +69,21 @@ flex: 1;
 align-items: center;
 padding: 0.5rem 0;
     }
-    #userPage #userHeader >div#userTop .followCounter h2{
+    #userPage #userHeader.mobile >div .buttonActions{
+        align-items: stretch;
+        padding: 1rem 0;
+    }
+    #userPage #userHeader.mobile >div .buttonActions button{
+        flex: 1;
+    }
+    #userPage #userHeader .followCounter h2{
         font-family: 'logoTXT';
         letter-spacing: 0.1rem;
         font-size: 3rem;
         color: #fff;
         font-weight: 100;
     }
-    #userPage #userHeader >div#userTop .followCounter p{
+    #userPage #userHeader .followCounter p{
         color:var(--side-txt);
         font-weight: 600;
         font-size: 1.1rem;
@@ -64,6 +94,7 @@ padding: 0.5rem 0;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         align-items: center;
         justify-items: center;
+        margin-bottom: 1rem;
     }
     #userPage .tabSwitcher label{
         padding: 0.9rem;
@@ -72,6 +103,7 @@ padding: 0.5rem 0;
         cursor: pointer;
         transition: all 100ms;
         border-bottom: 0px solid var(--spotlight-color);
+        text-align: center;
     }
     #userPage .tabSwitcher input{
         position: absolute;
@@ -83,6 +115,7 @@ padding: 0.5rem 0;
         border-bottom-width: 2px;
         color: #fff;
     }
+
     #userPage .tabSwitcher > div label:hover{
         color: #fff;
     }

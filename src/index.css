@@ -5,7 +5,8 @@
   --spotlight-color:rgb(0, 149, 246);
   --light-color:#b1c1d3;
   --poupup-bg: radial-gradient(#f3f3f3,#f6f6f6);
-  --border-edge: 2px solid rgb(54, 54, 54);
+  --general-input-color: rgb(54, 54, 54);
+  --border-edge: 2px solid var(--general-input-color);
   --popup-BR: 15px;
   --small-BR: 4px;
   --button-BR:8px;

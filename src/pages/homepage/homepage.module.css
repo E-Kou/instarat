@@ -1,7 +1,35 @@
 #feed{
-    width: 100%;
+    width: min(100%, 45vh);
+    margin: 0 auto;
+    box-sizing: content-box;
+    padding-inline: 0;
 }
-#feed img{
+#feed .postRoller .post img{
     width: 100%;
-    height: 300vh;
+    max-height: 45vh;
+    object-fit: contain;
+}
+#feed .postRoller .post .infoArea .actionArea .userName{
+display: block;
+font-weight: 600;
+font-size: 1.08rem;
+padding: 0.5rem 0;
+text-decoration: none;
+}
+#feed .postRoller .post .infoArea .actionArea{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#feed .postRoller .post .infoArea .actionArea > div > button{
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+#feed .postRoller .post .infoArea .actionArea > div > button svg{
+    color: #fff;
+    height: 1.6rem;
+    width: 1.6rem;
 }
