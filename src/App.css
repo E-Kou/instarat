@@ -12,6 +12,10 @@
 .mainWindow .mainContent:has(main.lockWidth){
     width: min(100%, 1100px);
 }
+.mainWindow .mainContent:has(main.fullWidth){
+    width: 100%;
+    max-width: 100%;
+}
 .mainWindow .mainContent main:not(.noPadding){
     padding: 1.5rem;
 }

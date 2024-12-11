@@ -1,10 +1,10 @@
 import LoginBanner from '@/utils/loginBanner/loginBanner';
+import { toHereFN } from '@/utils/welocometoHere';
 import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Navbar from '../Navbar/navbar';
 
 export default function Root({focreLogin = true, children}) {
-  const navigate = useNavigate();
 
   useEffect(()=>{
     if(!localStorage.getItem("connectedAs") && !!focreLogin){

@@ -86,15 +86,16 @@ a:focus-visible{
   font-family: sans-serif;
 }
 
+ h1, h2, h3, h4, h5, h6 {
+  color: #edecec;
+}
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 p {
   text-wrap: pretty;
 }
-p {
-  text-wrap: pretty;
-}
+
 
 body{
   background-color: var(--body-color);

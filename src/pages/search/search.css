@@ -3,28 +3,55 @@
     height: 100vh;
     flex-direction: row;
     isolation: isolate;
+    justify-content: center;
+    align-items: center;
 }
 #searchMain .searchUI{
     overflow: auto;
+    max-width: min(100%, 550px);
+}
+#searchMain #userMap{
+    isolation: isolate;
 }
 #searchMain #userMap, #searchMain .searchUI{
     width: 50%;
     height: 100%;
+    position: relative;
 }
 #searchMain #locationSuggestion{
-background-color: var(--general-input-color);
-width: 100%;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 0.5rem;
-gap: 0.7rem;
-border-radius: var(--button-BR);
+    background-color: var(--general-input-color);
+    padding: 0.6rem;
+    border-radius: var(--button-BR);
+    position: sticky;
+    right: 0;
+    bottom: 0.5rem;
+    left: 0;
+    z-index: 3;
+    filter: drop-shadow(0px 0px 10px #00000082);
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 0.5rem;
+}
+#searchMain #locationSuggestion .topText,#searchMain #locationSuggestion{
+    display: flex;
+    gap: 0.7rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#searchMain #locationSuggestion .topText{
+    flex-direction: row;
+}
+#searchMain #locationSuggestion .topText h3{
+    margin-bottom: 0.4rem;
 }
 #searchMain #locationSuggestion img{
-width: 2rem;
-transform: scale(1.7);
-object-fit: contain;
+    width: 4rem;
+    object-fit: contain;
+}
+#searchMain #locationSuggestion button{
+width: 100%;
+padding: 0.5rem;
 }
 #searchMain .searchUI .searchTop {
     position: sticky;
@@ -33,11 +60,14 @@ object-fit: contain;
     right: 0;
     padding: 1rem;
     border-bottom: var(--border-edge);
+    background-color: #000;
 }
 #searchMain .searchUI h1{
-    margin-bottom: -0.5rem;
+    margin-bottom: -0.45rem;
     padding: 1rem;
     padding-bottom: 0;
+    position: relative;
+    z-index: 1;
 }
 
 #searchMain .searchUI .InputArea:has(input:focus) {
@@ -70,7 +100,39 @@ outline: none;
 }
 
 #searchMain .searchUI .userList{
-    padding: 1rem;
+    padding: 0.6rem 0;
+}
+#searchMain .searchUI .userList li{
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+#searchMain .searchUI .userList li > div{
+    text-align: end;
+    padding-right: 0.5rem;
+}
+#searchMain .searchUI .userList li > div > button{
+    background: none;
+    border: none;
+    padding: 0.7rem;
+    cursor: pointer;
+    color: #fff;
+}
+#searchMain .searchUI .userList li > div > button svg{
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+#searchMain .searchUI .userList li > a{
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    flex: 1;
+}
+#searchMain .searchUI .userList li >a img{
+    height: 4rem;
+    border-radius: 100vmax;
 }
 
 
@@ -81,6 +143,7 @@ outline: none;
     #searchMain .searchUI,#searchMain #userMap{
     width: 100%;
     height: 50%;
+    max-width: 100%;
     }
     
 }

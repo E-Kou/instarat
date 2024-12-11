@@ -285,7 +285,6 @@ grid-template-rows: 0fr !important;
 
 
 
-
 .instaratMobileSidebar{
 position: fixed;
 bottom: 0;
@@ -293,6 +292,12 @@ left: 0;
 right: 0;
 isolation: isolate;
 z-index: 5;
+transition: all 0.4s ease;
+}
+@starting-style {
+  .instaratMobileSidebar{
+    bottom:100%;
+    }
 }
 .instaratMobileSidebar::before{
   content: "";
@@ -340,6 +345,7 @@ z-index: 5;
   color: #fff;
   padding: 0.7rem 0.6rem;
   padding-top: 1rem;
+
 }
 .instaratMobileSidebar .menu_container .menu_items li a svg{
   height: 1.96rem;
