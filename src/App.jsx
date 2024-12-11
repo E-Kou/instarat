@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Homepage from './pages/homepage/homepage'
-import Adduser from './pages/localtestsw/adduser'
 import Search from './pages/search/search'
 import Userpage from './pages/user/user'
 import Welcome from './pages/welcome/welcome'
@@ -29,9 +28,9 @@ function App() {
     {path:'/user/:username',
       element:<Root focreLogin={false}><Userpage/></Root>
     },
-    {path:'/testing',
-      element:<Adduser/>
-    }
+    // {path:'/testing',
+    //   element:<Adduser/>
+    // }
   ])
 
     const [width, setWidth] = useState(null);
