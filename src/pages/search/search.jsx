@@ -1,13 +1,22 @@
-import { IconDots, IconMapPin, IconSearch } from '@tabler/icons-react';
+import { useOutsideClick } from '@/utils/outsideclick';
+import { IconCancel, IconDots, IconMapPin, IconMessageCircle, IconSearch, IconUser, IconX } from '@tabler/icons-react';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { AnimatePresence, motion } from "motion/react";
+import { useRef, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import './search.css';
 
 function UserBox({username, followers, pfp }){
+  const [showMoreOptions,setShowMoreOptions] = useState(false);
+  const thisUserRef = useRef(null);
+  useOutsideClick(thisUserRef, () => setShowMoreOptions(false));
+
   return(
-    <li>
-      <Link to={`/user/${username}`}>
+    <li ref={thisUserRef} className={showMoreOptions?'optionsOpen':''}>
+      <div className='topPart'>
+      <Link className='profileLink' to={`/user/${username}`}>
       <img src={pfp}/>
     <div className='rightInfo'>
       <h2>{username}</h2>
@@ -16,12 +25,69 @@ function UserBox({username, followers, pfp }){
     </Link>
     <div>
       <button><IconMapPin/></button>
-      <button>
+      <button onClick={()=>{setShowMoreOptions(!showMoreOptions)}} title={`Περισσότερες επιλογές σχετικά με τον χρήστη ${username}`}>
             <IconDots/>
           </button>
     </div>
+    </div>
+    <AnimatePresence>
+  {!!showMoreOptions&&<motion.div className='bottomPart' initial={{height:0}} animate={{height:'auto'}} exit={{height:0}}>
+    <div className='bottomInside'>
+    <div className='optionsTop'>
+    <button title={`Ακολουθήστε τον χρήστη ${username}`} className='mainButton'>Ακολουθήστε</button>
+  <button className='secondaryButton' title={`Στείλτε μήνυμα στον χρήστη ${username}`}>Στείλτε μήνυμα</button>
+  </div>
+<div className='actionList'>
+  <button>Block</button>
+  <button>Αποστολή Λογαριασμού</button>
+  <button>Περιορισμός</button>
+</div>
+  </div>
+    </motion.div>}
+</AnimatePresence>
     </li>
   )
+}
+
+ function MapItem({position,pfp,username}){
+  const iconPerson = new L.Icon({
+    iconUrl: pfp,
+    iconAnchor: [20,20],
+    popupAnchor: [0,-17],
+    iconSize: [40,40],
+    className: 'map-user-icon'
+});
+  const popupRef = useRef(null);
+  const [showMoreOptions,setShowMoreOptions] = useState(false);
+
+  function closePopup(){
+    if(!!popupRef?.current){
+      popupRef.current.close();
+    }
+  }
+
+return (
+  <Marker icon={iconPerson} position={position}>
+  <Popup ref={popupRef} closeButton={false}>
+<AnimatePresence>
+  {!!showMoreOptions&&<motion.div className='userPopupOptions' initial={{height:0}} animate={{height:'auto'}} exit={{height:0}}>
+    <div className='optionsInside'>
+    <button className='redButton'><IconCancel/> Block</button>
+  <button><IconMessageCircle/> Στείλτε μήνυμα</button>
+    <button className='followButton' title={`Ακολουθήστε τον χρήστη ${username}`}><IconUser/> Ακολουθήστε</button>
+
+  </div>
+    </motion.div>}
+</AnimatePresence>
+    <div className='userPopupArea'>
+      <Link className='username' to={`/user/${username}`}>{username}</Link>
+    <button title={`Προβολή προφίλ χρήστη ${username}`}><IconUser/></button>
+    <button onClick={()=>{setShowMoreOptions(!showMoreOptions)}} title={`Περισσότερες επιλογές σχετικά με τον χρήστη ${username}`}><IconDots/></button>
+    <button onClick={closePopup} title={`Κλείσιμο`}><IconX/></button>
+    </div>
+  </Popup>
+</Marker>
+)
 }
 
 export default function Search() {
@@ -56,16 +122,13 @@ export default function Search() {
                 <button className='mainButton'>Ενεργοποίηση</button>
             </div>
         </div>
-          <MapContainer id='userMap' center={position} zoom={0} scrollWheelZoom={false}>
-  <TileLayer
-    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          <MapContainer id='userMap' center={position} zoom={1.85} minZoom={1.85} maxBoundsViscosity={0.9} maxBounds={[[-85.06, -180], [85.06, 180]]} scrollWheelZoom={true}>
+          <TileLayer
+    attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OMT</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+    url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
   />
-        <Marker position={position}>
-          <Popup>
-            <Link to='safg'>@dasfg</Link>
-          </Popup>
-        </Marker>
+<MapItem pfp='https://cdn.vectorstock.com/i/500p/64/79/retro-atomic-stars-seamless-pattern-on-orange-vector-44636479.jpg'
+username='evag' position={position}/>
       </MapContainer>
       </main>
   )

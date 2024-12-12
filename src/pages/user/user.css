@@ -53,6 +53,18 @@ gap: 1rem;
         width: fit-content;
         color: #fff;
     }
+    #userPage #userHeader >div h1 button{
+        background:none;
+        color: #fff;
+        border: none;
+        padding: 0.2rem 0.3rem;
+        cursor: pointer;
+        border-radius: var(--button-BR);
+        transition: background-color var(--quickTransition);
+    }
+    #userPage #userHeader >div h1 button:hover, #userPage #userHeader >div h1 button:focus-visible{
+        background-color: var(--hover-light-bg);
+    }
     #userPage #userHeader >div .buttonActions{
 display: flex;
 gap: 1rem;

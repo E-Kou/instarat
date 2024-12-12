@@ -55,7 +55,7 @@ function App() {
 
   return (
     <>
-    <SSizeContext.Provider value={{width,loggedIn}}>
+    <SSizeContext.Provider value={{width,loggedIn,setLoggedIn}}>
       <RouterProvider router={router} />
       </SSizeContext.Provider>
     </>

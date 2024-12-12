@@ -12,7 +12,128 @@
 }
 #searchMain #userMap{
     isolation: isolate;
+    background: #222222;
 }
+#searchMain #userMap .leaflet-container .leaflet-control-attribution{
+background: rgb(34 34 34 / 54%);
+color: #e0e0e0;
+}
+#searchMain #userMap .leaflet-control-attribution a {
+    color: #22a8ff;
+}
+#searchMain #userMap .leaflet-bar a{
+    color: white;
+    border-bottom: 1px solid #4d4d4d;
+    background-color: #323232;
+}
+#searchMain #userMap .leaflet-bar a:not(.leaflet-disabled):hover, #searchMain #userMap .leaflet-bar a:not(.leaflet-disabled):focus {
+    background-color: rgb(0 81 134);
+}
+#searchMain #userMap .leaflet-bar a.leaflet-disabled{
+    color: #ffffff78;
+}
+#searchMain #userMap .leaflet-popup-content-wrapper, #searchMain #userMap .leaflet-popup-tip{
+    color: #f0f0f0;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    border: 1px solid #4d4d4d;
+    background-color: #323232;
+    overflow: hidden;
+}
+#searchMain #userMap .leaflet-container a {
+    color:var(--link-color);
+}
+#searchMain #userMap .map-user-icon{
+aspect-ratio: 1/1;
+border: 1px solid #4d4d4d;
+border-radius: 100vmax;
+}
+#searchMain #userMap .leaflet-popup-content{
+    overflow: hidden;
+    margin: 0;
+    max-width: min(90vw, 260px);
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions .optionsInside{
+    gap: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0.3rem;
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions{
+    position: relative;
+    overflow: hidden;
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions::after{
+content: "";
+    position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+border-bottom: 1px solid #4d4d4d;
+
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions button{
+width: 100%;
+font-size: 1rem;
+padding: 0.25rem 0.4rem;
+display: block;
+text-align: start;
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions button > svg{
+    margin-left: -0.1rem;
+    height: 1.3rem;
+    stroke-width: 2.5px;
+    vertical-align: middle;
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions button.followButton > svg{
+    vertical-align: bottom;
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions .followButton{
+background: var(--spotlight-color);
+font-weight: 600;
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions .redButton{
+color: #ff3b3b;
+font-weight: 600;
+}
+#searchMain #userMap .leaflet-popup-content .userPopupOptions .redButton{
+    color: #ff3b3b;
+    font-weight: 600;
+    }
+#searchMain #userMap .leaflet-popup-content .userPopupArea{
+    padding: 0.3rem;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    column-gap: 0.15rem;
+    background-color: #323232;
+    position: relative;
+}
+#searchMain #userMap .leaflet-popup-content .userPopupArea .username{
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    padding-inline: 0.2rem 0.5rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border-right: 1px solid #4d4d4d;
+}
+#searchMain #userMap .leaflet-popup-content button{
+border: none;
+outline: none;
+background: none;
+color: #fff;
+cursor: pointer;
+display: flex;
+align-items: center;
+padding: 0.3rem;
+border-radius: 6px;
+transition: var(--quickTransition) background-color;
+}
+#searchMain #userMap .leaflet-popup-content button:hover,#searchMain #userMap .leaflet-popup-content button:focus-visible{
+    background-color: var(--hover-light-bg);
+}
+
 #searchMain #userMap, #searchMain .searchUI{
     width: 50%;
     height: 100%;
@@ -102,37 +223,80 @@ outline: none;
 #searchMain .searchUI .userList{
     padding: 0.6rem 0;
 }
-#searchMain .searchUI .userList li{
+#searchMain .searchUI .userList li .topPart{
     display: flex;
     gap: 0.5rem;
     justify-content: space-between;
     align-items: center;
 }
-#searchMain .searchUI .userList li > div{
+#searchMain .searchUI .userList li .topPart > div{
     text-align: end;
     padding-right: 0.5rem;
 }
-#searchMain .searchUI .userList li > div > button{
+#searchMain .searchUI .userList li .topPart > div > button{
     background: none;
     border: none;
     padding: 0.7rem;
     cursor: pointer;
+    vertical-align: middle;
     color: #fff;
+    transition: var(--quickTransition) background-color;
+    border-radius: var(--button-BR);
 }
-#searchMain .searchUI .userList li > div > button svg{
+#searchMain .searchUI .userList li .topPart > div > button:hover,#searchMain .searchUI .userList li .topPart > div > button:focus-visible{
+    background-color: var(--hover-light-bg);
+}
+#searchMain .searchUI .userList li .topPart > div > button svg{
     width: 1.7rem;
     height: 1.7rem;
 }
 
-#searchMain .searchUI .userList li > a{
+#searchMain .searchUI .userList li .topPart > a{
     display: flex;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
     flex: 1;
+    outline: none;
+    align-items: center;
 }
-#searchMain .searchUI .userList li >a img{
+#searchMain .searchUI .userList li:has(a.profileLink:hover),#searchMain .searchUI .userList li:has(a.profileLink:focus-visible), #searchMain .searchUI .userList li.optionsOpen{
+background-color: var(--hover-light-bg);
+}
+#searchMain .searchUI .userList li .topPart >a img{
     height: 4rem;
     border-radius: 100vmax;
+}
+#searchMain .searchUI .userList li .bottomPart{
+overflow: hidden;
+position: relative;
+}
+#searchMain .searchUI .userList li .bottomInside .actionList{
+    padding: 0.5rem 0;
+}
+#searchMain .searchUI .userList li .bottomInside .actionList button{
+    width: 100%;
+    background:none;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    color: #fff;
+    text-align: start;
+    font-size: 1rem;
+    cursor: pointer;
+    border-top: var(--border-edge);
+    transition: var(--quickTransition) background-color;
+}
+#searchMain .searchUI .userList li .bottomInside .actionList button:hover,
+#searchMain .searchUI .userList li .bottomInside .actionList button:focus-visible{
+background: var(--hover-light-bg);
+}
+#searchMain .searchUI .userList li .bottomPart .optionsTop{
+display: flex;
+width: 100%;
+gap: 0.5rem;
+padding: 0 1rem;
+}
+#searchMain .searchUI .userList li .bottomPart .optionsTop button{
+    flex: 1;
 }
 
 

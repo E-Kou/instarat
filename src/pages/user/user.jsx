@@ -1,5 +1,5 @@
 import SSizeContext from "@/utils/screenSize";
-import { IconLinkOff, IconShareOff, IconTagOff } from "@tabler/icons-react";
+import { IconCheck, IconLayoutGrid, IconLinkOff, IconShare, IconTagOff } from "@tabler/icons-react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
@@ -58,6 +58,53 @@ export default function Userpage() {
     beforeChange: (current, next) => setCurrentTab(next)
   };
 
+  const [wasCopied, setWasCopied] = useState(false);
+
+  function isMobile() {
+    const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return regex.test(navigator.userAgent);
+  }
+
+  const shareData = {
+    title: "Instarat",
+    text: `View ${username} on Instarat`,
+    url: `https://insta-rat-gr.web.app/user/${username}`,
+  };
+
+  async function copy(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      setWasCopied(true);
+      setTimeout(()=>{
+        setWasCopied(false);
+      },2000)
+      return true;
+    } catch (error) {
+      setWasCopied(false);
+      console.error(error.message);
+    }    
+  }
+
+   function ShareAccButton(){
+   async function shareIt(){
+if(isMobile() && !!navigator.canShare){
+  try {
+    await navigator.share(shareData);
+    resultPara.textContent = "MDN shared successfully";
+  } catch (err) {
+    console.log(`Sharing Error: ${err}`);
+   await copy(`https://insta-rat-gr.web.app/user/${username}`)
+  }
+} else{
+   await copy(`https://insta-rat-gr.web.app/user/${username}`)   
+    }
+    }
+return <button title={wasCopied?'Αντιγράφηκε στο πρόχειρο':'Κοινοποίηση προφίλ χρήστη'} onClick={shareIt}>
+  {wasCopied?<IconCheck/>:<IconShare/>}
+  </button>
+}
+  
+
   return (
     <main id='userPage'>
      {width < 700?
@@ -65,7 +112,7 @@ export default function Userpage() {
   <div id="userTop">
   <img className="pfp" src="https://cdn.vectorstock.com/i/500p/64/79/retro-atomic-stars-seamless-pattern-on-orange-vector-44636479.jpg" />
 
-  <h1>{username}</h1>
+  <h1>{username} <ShareAccButton/></h1>
           </div>
           <div id="userBelow">
   
@@ -88,7 +135,7 @@ export default function Userpage() {
   
           </div>
           <div id="userBelow">
-            <h1>{username}</h1>
+            <h1>{username} <ShareAccButton/></h1>
   
             <UserActions/>
           </div>
@@ -116,7 +163,7 @@ export default function Userpage() {
             :
             <div className="userTab">
             <div className="mainTabBox">
-            <IconShareOff/>
+            <IconLayoutGrid/>
             <p>Δεν υπάρχουν αναρτήσεις</p>
             </div>
           </div>

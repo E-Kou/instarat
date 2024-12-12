@@ -1,7 +1,8 @@
+import SSizeContext from '@/utils/screenSize';
 import { IconChevronLeft, IconChevronRight, IconLogin2, IconX } from '@tabler/icons-react';
 import levenshtein from 'js-levenshtein';
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import useMeasure from 'react-use-measure';
@@ -18,6 +19,9 @@ function NoteBox({children, boxClass}){
 } 
 
 export default function Welcome() {
+
+  const { width,loggedIn ,setLoggedIn } = useContext(SSizeContext);
+
 
  const names = [
   "giorgos",
@@ -245,7 +249,9 @@ function analyzeUsername(username) {
     useEffect(()=>{
 if(!localStorage.getItem("connectedAs")){
     setHasBeenLoaded(false)
+    setLoggedIn(false)
 } else{
+  setLoggedIn(true)
   if(!!searchParams.get("n")){
       navigate(decodeURIComponent(searchParams.get("n")),{replace:true});
   } else{
@@ -257,6 +263,7 @@ if(!localStorage.getItem("connectedAs")){
     function logout(){
       localStorage.removeItem("connectedAs")
       setHasBeenLoaded(false);
+      setLoggedIn(false)
     }
 
     function firstStep(){
@@ -295,6 +302,7 @@ if(!localStorage.getItem("connectedAs")){
           /// impliment firebase analytics
           localStorage.setItem('preloaded',true)
         }
+        setLoggedIn(true)
         if(!!searchParams.get("n")){
           setTimeout(()=>{
             navigate(decodeURIComponent(searchParams.get("n")),{replace:true});
