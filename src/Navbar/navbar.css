@@ -25,6 +25,11 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    height: 100dvh;
 }
   .instaratSidebar.close:not(:hover) {
     width: calc(55px + 30px);
@@ -143,15 +148,16 @@ color: #fff;
     display: flex;
     gap: 0.5rem;
     font-weight: 700;
+    outline: none;
   }
   .instaratSidebar .link.active{
 background-color: #fff;
 color: #000;
-  }
+}
   
-  .instaratSidebar .link:hover:not(.active) {
+  .instaratSidebar .link:hover:not(.active),.instaratSidebar .link:focus-visible:not(.active) {
     color: #fff;
-    background-color: rgb(255, 255, 255, .1);
+    background-color: var(--hover-light-bg);
     overflow: hidden;
   }
   .instaratSidebar .link:active{
@@ -160,7 +166,7 @@ color: #000;
   .instaratSidebar .link span {
     white-space: nowrap;
     opacity: 1;
-    transition: opacity 0.3s, color 0.17s, transform 0.3s;
+    transition: opacity 0.3s, color 50ms, transform 0.3s;
   }
   .instaratSidebar.close:not(:hover) .menu_item .item .link span{
 opacity: 0;

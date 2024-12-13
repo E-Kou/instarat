@@ -1,5 +1,6 @@
 import { useOutsideClick } from '@/utils/outsideclick';
 import { IconCancel, IconDots, IconMapPin, IconMessageCircle, IconSearch, IconUser, IconX } from '@tabler/icons-react';
+import { FocusTrap } from 'focus-trap-react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { AnimatePresence, motion } from "motion/react";
@@ -57,24 +58,39 @@ function UserBox({username, followers, pfp }){
     iconSize: [40,40],
     className: 'map-user-icon'
 });
-  const popupRef = useRef(null);
+  const markerRef = useRef(null);
   const [showMoreOptions,setShowMoreOptions] = useState(false);
+  const [popupOpen,setPopupOpen] = useState(false);
 
   function closePopup(){
-    if(!!popupRef?.current){
-      popupRef.current.close();
+    if(!!markerRef?.current){
+      markerRef.current.closePopup();
     }
   }
-
+  function openPopup(){
+    if(!!markerRef?.current){
+      markerRef.current.openPopup();
+    }
+  }
+const focusTrapOptions ={
+  escapeDeactivates:true,
+  clickOutsideDeactivates:true,
+  onDeactivate:()=>closePopup()
+}
 return (
-  <Marker icon={iconPerson} position={position}>
-  <Popup ref={popupRef} closeButton={false}>
+  <Marker ref={markerRef} icon={iconPerson} eventHandlers={{
+    popupopen: ()=>setPopupOpen(true),    // Trigger when the popup opens
+    popupclose: ()=>setPopupOpen(false), // Trigger when the popup closes
+  }}  position={position}>
+  <Popup className={showMoreOptions?'moreOptionsOpen':''} closeButton={false}>
+    <FocusTrap active={popupOpen} focusTrapOptions={focusTrapOptions} >
+      <div>
 <AnimatePresence>
   {!!showMoreOptions&&<motion.div className='userPopupOptions' initial={{height:0}} animate={{height:'auto'}} exit={{height:0}}>
     <div className='optionsInside'>
-    <button className='redButton'><IconCancel/> Block</button>
-  <button><IconMessageCircle/> Στείλτε μήνυμα</button>
-    <button className='followButton' title={`Ακολουθήστε τον χρήστη ${username}`}><IconUser/> Ακολουθήστε</button>
+    <button onClick={openPopup} className='redButton'><IconCancel/> <span>Block</span></button>
+  <button><IconMessageCircle/> <span>Στείλτε μήνυμα</span></button>
+    <button className='followButton' title={`Ακολουθήστε τον χρήστη ${username}`}><IconUser/> <span>Ακολουθήστε</span></button>
 
   </div>
     </motion.div>}
@@ -82,9 +98,11 @@ return (
     <div className='userPopupArea'>
       <Link className='username' to={`/user/${username}`}>{username}</Link>
     <button title={`Προβολή προφίλ χρήστη ${username}`}><IconUser/></button>
-    <button onClick={()=>{setShowMoreOptions(!showMoreOptions)}} title={`Περισσότερες επιλογές σχετικά με τον χρήστη ${username}`}><IconDots/></button>
+    <button className='optionsButton' onClick={()=>{setShowMoreOptions(!showMoreOptions)}} title={`Περισσότερες επιλογές σχετικά με τον χρήστη ${username}`}><IconDots/></button>
     <button onClick={closePopup} title={`Κλείσιμο`}><IconX/></button>
     </div>
+    </div>
+    </FocusTrap>
   </Popup>
 </Marker>
 )

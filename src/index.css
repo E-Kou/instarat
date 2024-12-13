@@ -185,7 +185,7 @@ a{
   font-weight: 600;
   border-radius: var(--button-BR);
   cursor: pointer;
-  z-index: 2;
+  z-index: 1;
   position: relative;
   outline: none;
   border: var(--spotlight-color) solid 3px;

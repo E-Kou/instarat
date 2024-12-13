@@ -26,6 +26,7 @@ align-items: center;
         letter-spacing: 0.05rem;
         text-align: start;
         line-height: 1.2;
+        display: inline-flex;
     }
     #userPage #userHeader.mobile .followCounter h2{
         font-size: 2rem;
@@ -53,6 +54,7 @@ gap: 1rem;
         width: fit-content;
         color: #fff;
     }
+    
     #userPage #userHeader >div h1 button{
         background:none;
         color: #fff;
@@ -65,6 +67,7 @@ gap: 1rem;
     #userPage #userHeader >div h1 button:hover, #userPage #userHeader >div h1 button:focus-visible{
         background-color: var(--hover-light-bg);
     }
+
     #userPage #userHeader >div .buttonActions{
 display: flex;
 gap: 1rem;

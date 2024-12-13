@@ -142,15 +142,15 @@ return <button title={wasCopied?'Αντιγράφηκε στο πρόχειρο'
         </div>
      }
  
-      <div className="tabSwitcher">
-        <div><input type="radio" id="posts" checked={currentTab === 0} onChange={(e) => { sliderRef.slickGoTo(0) }} name="currentTab" value="Αναρτήσεις" />
+      <div role="tablist" className="tabSwitcher">
+        <div><input type="radio" aria-controls="postsTab" id="posts" role="tab" aria-selected={currentTab === 0} checked={currentTab === 0} onChange={(e) => { sliderRef.slickGoTo(0) }} name="currentTab" value="Αναρτήσεις" />
           <label htmlFor="posts">Αναρτήσεις</label></div>
 
-        <div><input type="radio" id="tagged" checked={currentTab === 1} onChange={(e) => { sliderRef.slickGoTo(1) }} name="currentTab" value="Αναφορές" />
+        <div><input type="radio" aria-controls="taggedTab" id="tagged" role="tab" aria-selected={currentTab === 1} checked={currentTab === 1} onChange={(e) => { sliderRef.slickGoTo(1) }} name="currentTab" value="Αναφορές" />
           <label htmlFor="tagged">Αναφορές</label></div>
 
-        <div><input type="radio" id="External" checked={currentTab === 2} onChange={(e) => { sliderRef.slickGoTo(2) }} name="currentTab" value="Εξωτερικοί σύνδεσμοι" />
-          <label htmlFor="External">Εξωτερικοί σύνδεσμοι</label></div>
+        <div><input type="radio" aria-controls="externalTab" id="external" role="tab" aria-selected={currentTab === 2} checked={currentTab === 2} onChange={(e) => { sliderRef.slickGoTo(2) }} name="currentTab" value="Εξωτερικοί σύνδεσμοι" />
+          <label htmlFor="external">Εξωτερικοί σύνδεσμοι</label></div>
       </div>
       <Slider
         ref={slider => {
@@ -158,7 +158,7 @@ return <button title={wasCopied?'Αντιγράφηκε στο πρόχειρο'
         }}
         {...settings}
       >
-        <div className="userTab">
+        <div role="tabpanel" aria-labelledby="posts" id="postsTab" className="userTab">
           {!available ? <div className="mainTabBox"><WelocomeToHere style={{width:'100%'}} className='mainButton'>Ορίστε στοίχεια χρήστη για να δείτε περισσότερα</WelocomeToHere></div>
             :
             <div className="userTab">
@@ -168,13 +168,13 @@ return <button title={wasCopied?'Αντιγράφηκε στο πρόχειρο'
             </div>
           </div>
           }</div>
-          <div className="userTab">
+          <div role="tabpanel" aria-labelledby="tagged" id="taggedTab" className="userTab">
             <div className="mainTabBox">
             <IconTagOff/>
             <p>Δεν βρέθηκαν αναφορές</p>
             </div>
           </div>
-          <div className="userTab">
+          <div role="tabpanel" aria-labelledby="external" id="externalTab" className="userTab">
             <div className="mainTabBox">
             <IconLinkOff/>
             <p>Εξωτερικοί σύνδεσμοι μη διαθέσιμοι</p>

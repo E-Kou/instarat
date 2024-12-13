@@ -14,8 +14,8 @@
     isolation: isolate;
     background: #222222;
 }
-#searchMain #userMap .leaflet-container .leaflet-control-attribution{
-background: rgb(34 34 34 / 54%);
+#searchMain #userMap.leaflet-container .leaflet-control-attribution{
+    background: rgb(34 34 34 / 54%) !important;
 color: #e0e0e0;
 }
 #searchMain #userMap .leaflet-control-attribution a {
@@ -39,13 +39,14 @@ color: #e0e0e0;
     background-color: #323232;
     overflow: hidden;
 }
-#searchMain #userMap .leaflet-container a {
-    color:var(--link-color);
-}
+
 #searchMain #userMap .map-user-icon{
 aspect-ratio: 1/1;
 border: 1px solid #4d4d4d;
 border-radius: 100vmax;
+}
+#searchMain #userMap .map-user-icon:focus-visible{
+    outline:2px solid var(--spotlight-color)
 }
 #searchMain #userMap .leaflet-popup-content{
     overflow: hidden;
@@ -84,9 +85,6 @@ text-align: start;
     stroke-width: 2.5px;
     vertical-align: middle;
 }
-#searchMain #userMap .leaflet-popup-content .userPopupOptions button.followButton > svg{
-    vertical-align: bottom;
-}
 #searchMain #userMap .leaflet-popup-content .userPopupOptions .followButton{
 background: var(--spotlight-color);
 font-weight: 600;
@@ -95,10 +93,7 @@ font-weight: 600;
 color: #ff3b3b;
 font-weight: 600;
 }
-#searchMain #userMap .leaflet-popup-content .userPopupOptions .redButton{
-    color: #ff3b3b;
-    font-weight: 600;
-    }
+
 #searchMain #userMap .leaflet-popup-content .userPopupArea{
     padding: 0.3rem;
     display: flex;
@@ -130,7 +125,8 @@ padding: 0.3rem;
 border-radius: 6px;
 transition: var(--quickTransition) background-color;
 }
-#searchMain #userMap .leaflet-popup-content button:hover,#searchMain #userMap .leaflet-popup-content button:focus-visible{
+#searchMain #userMap .leaflet-popup-content button:hover,#searchMain #userMap .leaflet-popup-content button:focus-visible,
+#searchMain #userMap .leaflet-popup-content.moreOptionsOpen button.optionsButton{
     background-color: var(--hover-light-bg);
 }
 
@@ -176,6 +172,7 @@ padding: 0.5rem;
 }
 #searchMain .searchUI .searchTop {
     position: sticky;
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
@@ -188,7 +185,7 @@ padding: 0.5rem;
     padding: 1rem;
     padding-bottom: 0;
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 
 #searchMain .searchUI .InputArea:has(input:focus) {
@@ -225,9 +222,9 @@ outline: none;
 }
 #searchMain .searchUI .userList li .topPart{
     display: flex;
-    gap: 0.5rem;
     justify-content: space-between;
     align-items: center;
+    padding: 0.5rem 0;
 }
 #searchMain .searchUI .userList li .topPart > div{
     text-align: end;
@@ -254,7 +251,7 @@ outline: none;
 #searchMain .searchUI .userList li .topPart > a{
     display: flex;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0 1rem;
     flex: 1;
     outline: none;
     align-items: center;

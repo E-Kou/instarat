@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/base": "^5.0.0-beta.66",
     "@tabler/icons": "^3.21.0",
     "@tabler/icons-react": "^3.22.0",
     "firebase": "^11.0.2",
+    "focus-trap-react": "^11.0.1",
     "js-levenshtein": "^1.1.6",
     "leaflet": "^1.9.4",
+    "lodash": "^4.17.21",
     "motion": "^11.11.17",
     "path": "^0.12.7",
     "react": "^18.3.1",

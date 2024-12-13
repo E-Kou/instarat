@@ -30,7 +30,7 @@ export default function Navbar() {
   }
   if(!!loggedIn){
   return (
-    <nav className={`${width > 1200?'instaratSidebar':'instaratMobileSidebar'} ${sidebarLocked ? 'locked' :'close'}`}>
+    <nav role="navigation" className={`${width > 1200?'instaratSidebar':'instaratMobileSidebar'} ${sidebarLocked ? 'locked' :'close'}`}>
       {width > 1200 ? 
       <>
     <div className="logo_items flex">

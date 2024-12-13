@@ -4,11 +4,15 @@
     box-sizing: content-box;
     padding-inline: 0;
 }
+#feed .postRoller .post{
+    margin-bottom: 2.5rem;
+}
 #feed .postRoller .post img{
     width: 100%;
     max-height: 45vh;
     object-fit: contain;
 }
+
 #feed .postRoller .post .infoArea .actionArea .userName{
 display: block;
 font-weight: 600;
@@ -20,12 +24,56 @@ text-decoration: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
-#feed .postRoller .post .infoArea .actionArea > div > button{
+#feed .postRoller .post .infoArea .actionArea .postOptionMenu{
+overflow: hidden;
+}
+#feed .postRoller .post .infoArea .actionArea > div div.optionsArea{
+    display: inline-block;
+
+}
+#feed .postRoller .post .infoArea .actionArea > div > button,
+#feed .postRoller .post .infoArea .actionArea > div div.optionsArea > button {
     background: none;
     border: none;
     padding: 0.5rem;
     cursor: pointer;
+    color: #fff;
+}
+#feed .postRoller .post .infoArea .actionArea  .postOptionMenu{
+position: absolute;
+top: 100%;
+right: 0;
+box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+border: 1px solid #4d4d4d;
+background-color: #323232;
+border-radius: var(--button-BR);
+max-width: 100%;
+}
+#feed .postRoller .post .infoArea .actionArea  .postOptionMenu >div{
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+#feed .postRoller .post .infoArea .actionArea  .postOptionMenu >div>button{
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    color: #fff;
+    text-align: start;
+    padding: 0.5rem;
+    border-radius: calc(var(--button-BR) - 0.2rem);
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: all var(--quickTransition);
+}
+#feed .postRoller .post .infoArea .actionArea  .postOptionMenu >div>button:focus-visible,
+#feed .postRoller .post .infoArea .actionArea  .postOptionMenu >div>button:hover{
+    background: var(--hover-light-bg);
 }
 
 #feed .postRoller .post .infoArea .actionArea > div > button svg{
