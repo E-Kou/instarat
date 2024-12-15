@@ -19,3 +19,6 @@
 .mainWindow .mainContent main:not(.noPadding){
     padding: 1.5rem;
 }
+#selfCredit,#loaderLogo{
+    display: none !important;
+}

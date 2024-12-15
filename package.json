@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/base": "^5.0.0-beta.66",
     "@tabler/icons": "^3.21.0",
     "@tabler/icons-react": "^3.22.0",
     "firebase": "^11.0.2",

@@ -36,7 +36,7 @@ function App() {
     const [width, setWidth] = useState(null);
     const [loggedIn, setLoggedIn] = useState(null);
     function reloadWidth(){
-      setWidth(window.innerWidth)
+      setWidth(document.body.clientWidth)
     }
     function reloadLoginState(){
       setLoggedIn(!!localStorage.getItem("connectedAs"))

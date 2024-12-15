@@ -4,6 +4,24 @@
     box-sizing: content-box;
     padding-inline: 0;
 }
+
+#feed #logoTop h1{
+text-align: center;
+width: 100%;
+font-family: 'logoTXT';
+font-weight: 100;
+}
+#feed #logoTop h1 img{
+    height: 2ch;
+    vertical-align:bottom;
+}
+
+#feed #logoTop{
+    border-bottom: var(--border-edge);
+    margin-bottom: 0.5rem;
+    padding: 0.7rem 1rem 0.6rem;
+}
+
 #feed .postRoller .post{
     margin-bottom: 2.5rem;
 }
@@ -11,8 +29,11 @@
     width: 100%;
     max-height: 45vh;
     object-fit: contain;
+    display: block;
 }
-
+#feed .postRoller.mobileView .post .infoArea{
+padding: 0 0.7rem;
+}
 #feed .postRoller .post .infoArea .actionArea .userName{
 display: block;
 font-weight: 600;
@@ -20,17 +41,18 @@ font-size: 1.08rem;
 padding: 0.5rem 0;
 text-decoration: none;
 }
+#feed .postRoller .post .infoArea .actionArea h1.userName{
+    font-size: 1.2rem;
+}
+
 #feed .postRoller .post .infoArea .actionArea{
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
 }
-#feed .postRoller .post .infoArea .actionArea .postOptionMenu{
-overflow: hidden;
-}
-#feed .postRoller .post .infoArea .actionArea > div div.optionsArea{
-    display: inline-block;
+#feed .postRoller .post .infoArea .actionArea > div{
+    display: flex
 
 }
 #feed .postRoller .post .infoArea .actionArea > div > button,
@@ -50,6 +72,8 @@ border: 1px solid #4d4d4d;
 background-color: #323232;
 border-radius: var(--button-BR);
 max-width: 100%;
+overflow: hidden;
+z-index: 3;
 }
 #feed .postRoller .post .infoArea .actionArea  .postOptionMenu >div{
     padding: 0.3rem;
@@ -80,4 +104,17 @@ max-width: 100%;
     color: #fff;
     height: 1.6rem;
     width: 1.6rem;
+}
+
+
+#feed .postRoller .post .infoArea .notice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem;
+    background-color: var(--hover-light-bg);
+    font-size: 1.05rem;
+    gap: 1rem;
+    border-radius: var(--button-BR);
+    margin: 0 -0.55rem;
 }

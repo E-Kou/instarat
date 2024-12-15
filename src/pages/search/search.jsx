@@ -4,7 +4,7 @@ import { FocusTrap } from 'focus-trap-react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { AnimatePresence, motion } from "motion/react";
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import './search.css';
@@ -17,7 +17,7 @@ function UserBox({username, followers, pfp }){
   return(
     <li ref={thisUserRef} className={showMoreOptions?'optionsOpen':''}>
       <div className='topPart'>
-      <Link className='profileLink' to={`/user/${username}`}>
+      <Link aria-label={`Δειτε το προφίλ του χρήστη ${username}`} className='profileLink' to={`/user/${username}`}>
       <img src={pfp}/>
     <div className='rightInfo'>
       <h2>{username}</h2>
@@ -25,7 +25,7 @@ function UserBox({username, followers, pfp }){
     </div>
     </Link>
     <div>
-      <button><IconMapPin/></button>
+      <button title={`Προβολή χρήστη ${username} στον χάρτη`}><IconMapPin/></button>
       <button onClick={()=>{setShowMoreOptions(!showMoreOptions)}} title={`Περισσότερες επιλογές σχετικά με τον χρήστη ${username}`}>
             <IconDots/>
           </button>
@@ -74,7 +74,8 @@ function UserBox({username, followers, pfp }){
   }
 const focusTrapOptions ={
   escapeDeactivates:true,
-  clickOutsideDeactivates:true,
+  allowOutsideClick:true,
+  clickOutsideDeactivates:false,
   onDeactivate:()=>closePopup()
 }
 return (
@@ -109,7 +110,22 @@ return (
 }
 
 export default function Search() {
-    const position = [51.505, -0.09]
+    const position = [51.505, -0.09];
+    const [showInstaLoc,setShowInstaLoc]= useState(false);
+
+    useEffect(()=>{
+      if(!sessionStorage.getItem('instaLoc')&&!localStorage.getItem('instaLoc')&&!!localStorage.getItem('searchOpened')){
+        setShowInstaLoc(true);
+      }else if(!localStorage.getItem('searchOpened')){
+        localStorage.setItem('searchOpened',true)
+      }
+    },[])
+
+    function hideSuggestion(){
+      setShowInstaLoc(false)
+      // sessionStorage.setItem('instaLoc',true)
+    }
+
   return (
     <main id='searchMain' className='noPadding fullWidth'>
         <div className='searchUI'>
@@ -117,7 +133,7 @@ export default function Search() {
        <div className='searchTop'>
                 <label className='InputArea' htmlFor='userSearch'>
                 <IconSearch/>    
-            <input placeholder='Εισάγετε όνομα χρήστη' id='userSearch' type='text'/>
+            <input role="searchbox" placeholder='Εισάγετε όνομα χρήστη' id='userSearch' type='text'/>
             </label>
             </div>
             <ul className='userList'>
@@ -129,7 +145,11 @@ export default function Search() {
 <UserBox username='koutsogiannis' followers='2k' pfp='https://cdn.vectorstock.com/i/500p/64/79/retro-atomic-stars-seamless-pattern-on-orange-vector-44636479.jpg' />
 
             </ul>
-            <div id='locationSuggestion'>
+            <AnimatePresence>
+            {!!showInstaLoc&&
+            <motion.div initial={{height:0,opacity:0}} animate={{height:'auto',opacity:1}} exit={{height:0,opacity:0}} id='locationSuggestion'>
+              <div>
+              <button id='close' onClick={hideSuggestion} className='actionable'><IconX/></button>
                     <div className='topText'>
                 <img src='/locationLogo.png'/>
                 <div>
@@ -138,7 +158,9 @@ export default function Search() {
                 </div>
                 </div>
                 <button className='mainButton'>Ενεργοποίηση</button>
-            </div>
+                </div>
+            </motion.div>}
+            </AnimatePresence>
         </div>
           <MapContainer id='userMap' center={position} zoom={1.85} minZoom={1.85} maxBoundsViscosity={0.9} maxBounds={[[-85.06, -180], [85.06, 180]]} scrollWheelZoom={true}>
           <TileLayer

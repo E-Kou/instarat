@@ -1,0 +1,42 @@
+#popupBG{
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 40%);
+    z-index: 50;
+}
+#popupBG.transparent{
+    pointer-events: none;
+}
+#Popup{
+    display: block;
+    background-color: var(--highlight-bg);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 50;
+    border-radius: var(--popup-BR);
+    isolation: isolate;
+}
+#Popup .popupTop{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: start;
+    gap: 1rem;
+    justify-content: space-between;
+    border-bottom: var(--border-edge);
+    padding-bottom: 0.3rem;
+    padding: 0.8rem;
+}
+#Popup .popupTop .popupTitle{
+line-height: 1.1;
+}
+#Popup .closeButton{
+    padding: 0.5rem;
+}
+#Popup .closeButton.inline{
+    float: right;
+}
+#Popup .content{
+    padding: 0.8rem;
+}

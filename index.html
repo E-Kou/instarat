@@ -1,7 +1,36 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <style>body{background-color: black}</style>
+    <style>body{background-color: black;
+    #translation-area{
+      display: none;
+    }
+    #loaderLogo{
+      position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    }
+    #selfCredit{
+      position: fixed;
+    bottom: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    color: #c3c3c3;
+    font-family: sans-serif;
+    display: block;
+    text-align: center;
+    }
+    #selfCredit span{
+      display: block;
+    }
+    #selfCredit img{
+      height: 5em;
+      margin: 0.5em 0 0.2em;
+    }
+    }</style>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/instarat.ico" />
     <meta content='yes' name='apple-mobile-web-app-capable'/>
@@ -11,7 +40,128 @@
     
   </head>
   <body>
+    <noscript>This website requires JavaScript to function. / Αυτη η εφαρμογή απαιτεί JavaScript για να λειτουργήσει.</noscript>
+    <img id="loaderLogo" src="/instarat_low.png">
+    <p id="selfCredit">
+      <span>Built by</span>
+      <img alt="EK logo" src="/EKlogo.png">
+      <span>Evangelos Koutsogiannis</span>
+    </p>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <div role="dialog" id="translation-area">
+      <div aria-hidden="true" class="circleLoader"></div>
+      <div class="translationTop">
+        <h1 class='notranslate'>Translation Available</h1>
+        <p class='notranslate'>Offered by <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"></p>
+      </div>
+      <div id='google_translate_element'></div>
+      <button class="blueButton" id='translation-toggle' style="display:none"></button>
+  </div>
+
+      <script>
+        function enableTranslation(){if(!document.getElementById("googleTranslateScript")){var e = document.createElement("script");e.setAttribute("id", "googleTranslateScript");e.type="text/javascript", e.src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";var a=document.getElementById("translation-toggle");a.parentNode.insertBefore(e,a);if(localStorage.getItem("GoogleTranslation")!='set'){localStorage.setItem("GoogleTranslation", "Enabled")};document.getElementById("translation-toggle").addEventListener("click", disableTranslation);document.getElementById("translation-toggle").innerHTML = `<span class='notranslate'>Απενεργοποίηση μετάφρασης</span>Disable translation`;document.getElementById("translation-toggle").classList.add('enabled');document.getElementById('translation-toggle').removeEventListener('click', enableTranslation)}}
+        </script>
+<script>
+  function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'el'},'google_translate_element')};
+  </script>
+  
+  <script>
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function removeTranslateWindow(){
+  if(!!document.getElementById('translation-area')){
+      document.getElementById('translation-area').remove();
+  }
+}
+
+function saveTranslation(){
+  localStorage.setItem('GoogleTranslation','set')
+  removeTranslateWindow();
+}
+
+    function handleCookieChange(){
+      const trnaslationWindow = document.getElementById('translation-area');
+      if(!!trnaslationWindow){
+        if(!!getCookie('googtrans')){
+          if(!document.getElementById('translationEndButton')){
+                 var e = document.createElement("button");
+        e.textContent = 'OK';
+        e.setAttribute('id','translationEndButton')
+        e.className = 'mainButton'
+        e.onclick = saveTranslation;
+        trnaslationWindow.append(e);   
+          }
+      }else{
+        const element = document.getElementById('translationEndButton');
+        if(!!element){
+          element.remove();
+        }
+      }
+      }
+
+    }
+
+    function loadCookies(){
+        localStorage.setItem("GoogleTranslation", "Enabled")
+        addEventListener("load", () => {
+          handleCookieChange();
+          document.querySelector('#google_translate_element > .goog-te-gadget > div > select.goog-te-combo').addEventListener('change', handleCookieChange);
+          document.getElementById("translation-area").classList.add('show');
+      });
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const translateParam = urlParams.get('translate');
+    if(!!translateParam){
+        enableTranslation();
+      if(getCookie('googtrans') !== `/el/${translateParam}` || localStorage.getItem('GoogleTranslation') != 'set'){
+        document.cookie = `googtrans=/el/${translateParam}; path=/;`;
+      loadCookies();
+      }  
+     
+    } else
+    if (localStorage.getItem('GoogleTranslation') != 'Disabled'){
+      enableTranslation();
+      if(localStorage.getItem('GoogleTranslation') != 'set'){
+        loadCookies();
+    }
+
+    } else {
+    document.getElementById('translation-toggle').addEventListener('click', enableTranslation);
+    document.getElementById('translation-toggle').innerHTML = '<span>Enable Translation</span>';
+    }
+  function disableTranslation(){
+    document.getElementById('googleTranslateScript').remove();
+    document.getElementById("translation-area").classList.add('loading');
+    localStorage.removeItem('GoogleTranslation');
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    localStorage.setItem('GoogleTranslation', 'Disabled');
+
+    if(!!translateParam||!!getCookie('googtrans')){
+      urlParams.delete("translate");
+      window.location.search = urlParams.toString();
+    } else{
+      document.getElementById("translation-area").remove();
+    }
+    };
+    </script>
+
   </body>
 </html>
